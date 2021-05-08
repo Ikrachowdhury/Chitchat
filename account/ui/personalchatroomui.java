@@ -244,6 +244,14 @@ public class personalchatroomui extends clintsocket {
                 new CustomeBorder(), new EmptyBorder(new Insets(10, 10, 10, 10)
                 )));
 
+        gamingzonebutton = new JButton("Game");
+        gamingzonebutton.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+        gamingzonebutton.setForeground(Color.white);
+        gamingzonebutton.setBackground(new Color(1, 51, 20));
+        gamingzonebutton.setBorder(BorderFactory.createCompoundBorder(
+                new CustomeBorder(), new EmptyBorder(new Insets(10, 10, 10, 10)
+                )));
+
         //jpanel3 component
         connectedfriendslabel = new JLabel("Connected People");
         connectedfriendslabel.setFont(new Font(Font.SERIF, Font.BOLD, 20));
@@ -394,11 +402,20 @@ public class personalchatroomui extends clintsocket {
         gridbagconstrain2.gridy = 3;
         gridbagconstrain2.gridx = 4;
         gridbagconstrain2.ipady = 0;
-        gridbagconstrain2.gridwidth = 2;
+        gridbagconstrain2.gridwidth = 1;
         gridbagconstrain2.fill = GridBagConstraints.BOTH;
         gridbagconstrain2.insets = new Insets(0, 0, 20, 0);
 
         jpanel2.add(filebutton, gridbagconstrain2);
+
+        gridbagconstrain2.gridy = 3;
+        gridbagconstrain2.gridx = 5;
+        gridbagconstrain2.ipady = 0;
+        gridbagconstrain2.gridwidth = 1;
+        gridbagconstrain2.fill = GridBagConstraints.BOTH;
+        gridbagconstrain2.insets = new Insets(0, 0, 20, 0);
+
+        jpanel2.add(gamingzonebutton, gridbagconstrain2);
 
         //layout of jpanel3                              
         jpanel3.setLayout(new GridBagLayout());
