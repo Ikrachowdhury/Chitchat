@@ -22,7 +22,8 @@ public class clintsocket {
     public String clintnames, username;
     public Scanner scanner;
     public File objectfilepath;
-    public ArrayList<String> clint_list;
+    public static ArrayList<String> Friend_list = new ArrayList<String>();
+    //public ArrayList<String> clint_list;
 
     //for perameteraizing need  
     public clintsocket() {
@@ -31,8 +32,7 @@ public class clintsocket {
  
     //setconnection
     public void setconnectiontoserver() {
-
-        //stting connection 
+  
         try {
 
             ip = InetAddress.getLocalHost();
@@ -47,6 +47,23 @@ public class clintsocket {
         } catch (Exception e) {
             System.out.println(e + "clintsocket");
         }
+    }
+    
+    public void fromFile_toFriendlist(){
+        
+    }
+    public void FileOfFriendLsit(String clintname,String friendname){
+         try {
+            String filename="friendlistof"+clintname+".txt";
+            BufferedWriter bw = new BufferedWriter(new FileWriter( filename, true));
+            bw.write(friendname);
+            bw.newLine();
+           
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
     }
   
 }

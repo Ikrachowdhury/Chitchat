@@ -9,6 +9,7 @@ public class clintthread extends clintsocket implements Runnable{
      public ArrayList<String> msgelist;
      public String name;
      public int number;
+     public boolean friend=false;
      
     
     public clintthread (String name,int number) {

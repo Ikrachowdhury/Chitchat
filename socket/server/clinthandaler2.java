@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.StringTokenizer;
 
 public class clinthandaler2 implements Runnable {
- 
+
     public Socket socketclint, socket;
     public DataInputStream recievingstream;
     public DataOutputStream sendingstream;
@@ -15,7 +15,7 @@ public class clinthandaler2 implements Runnable {
     public serversocket server;
     public final int clintnumber;
     public int clintnumber_tosent;
-    public boolean  logout = false;
+    public boolean logout = false;
 
     public clinthandaler2(serversocket server, int clintnumber, Socket socket, DataInputStream recievingstream,
             DataOutputStream sendingstream) {
@@ -27,7 +27,7 @@ public class clinthandaler2 implements Runnable {
         this.name = name;
         this.socket = socket;
         clintname = new String();
-       //System.out.println(clintnumber);
+        //System.out.println(clintnumber);
 
     }
 
@@ -35,25 +35,33 @@ public class clinthandaler2 implements Runnable {
     public void run() {
 
         while (true) {
-            if ( logout == false) {
+            if (logout == false) {
                 try {
                     msg = recievingstream.readUTF();
-                    System.out.println(msg);
-                    System.out.println(clintnumber);
+                    // System.out.println(msg);
+                    //System.out.println(clintnumber);
                     if (msg.endsWith("%c@")) {
-                        msg_to_actualmsg(msg);
+                        msg_to_actualmsg();
                         toall();
                         alreadyconnectedpeoplelist();
 
                     } //for first time registering mesg
                     else if (msg.endsWith("**%#@*")) {
                         createregisteredclintlist(msg);
-                    } else if (msg.endsWith(",_(:);)(")) {
-
+                    } //for logout indication
+                    else if (msg.endsWith(",_(:);)(")) {
                         logged_out();
-                    } //if notbreaks the msg
+                    } //for incoming friend request
+                    else if (msg.endsWith("&&&&&&&&")) {
+                        msg_to_actualmsg();
+                        send_friendrequest();
+                    } //for outgoing friend request ans
+                    else if (msg.endsWith("^^^^^^^^")) {
+                        msg_to_actualmsg();
+                        friendrequest_ans();
+                    } //if not breaks the msg
                     else {
-                        msg_to_actualmsg(msg);
+                        msg_to_actualmsg();
                         sendtoclint();
                     }
                 } catch (IOException e) {
@@ -101,20 +109,32 @@ public class clinthandaler2 implements Runnable {
         }
     }
 
-    public String msg_to_actualmsg(String connectedclintname) {
-        msg = connectedclintname;
+    public String msg_to_actualmsg() {
+
         try {
             if (msg.endsWith("%c@")) {
-                msg = connectedclintname;
-                StringTokenizer token = new StringTokenizer(msg, "%c@", false); //c%@clintname is token delimeter
+                StringTokenizer token = new StringTokenizer(msg, "%c@", false);
 
                 this.clintname = token.nextToken();
+
+            } else if (msg.endsWith("&&&&&&&&")) {
+
+                StringTokenizer token = new StringTokenizer(msg, " &&&&&&&&", false);
+                recievingclint = token.nextToken();
+                clintnumber_tosent = Integer.parseInt(recievingclint);
+
+            } else if (msg.endsWith("^^^^^^^^")) {
+
+                StringTokenizer token = new StringTokenizer(msg, " ^^^^^^^^", false);
+                recievingclint = token.nextToken();
+                clintnumber_tosent = Integer.parseInt(recievingclint);
+
             } else {
                 // break the string into message and recipient part 
-                StringTokenizer st = new StringTokenizer(msg, "#", false);
+                StringTokenizer token = new StringTokenizer(msg, "#", false);
 
-                actualmsg = st.nextToken();
-                recievingclint = st.nextToken();
+                actualmsg = token.nextToken();
+                recievingclint = token.nextToken();
                 clintnumber_tosent = Integer.parseInt(recievingclint);
 
             }
@@ -162,7 +182,7 @@ public class clinthandaler2 implements Runnable {
             for (clinthandaler2 clint : server.allclint_object) {
 
                 if (clint.clintnumber == clintnumber_tosent) {
-                    clint.sendingstream.writeUTF(actualmsg + "#" + clintnumber+"#"+clintname);
+                    clint.sendingstream.writeUTF(actualmsg + "#" + clintnumber + "#" + clintname);
                 }
             }
         } catch (IOException e) {
@@ -174,27 +194,55 @@ public class clinthandaler2 implements Runnable {
     public void logged_out() {
 
         try {
-           
+
             logout = true;
-             
+
             for (clinthandaler2 clint : server.allclint_object) {
-                
+
                 if (clint.clintnumber == clintnumber) {
 
                     server.allclint_object.remove(clint);
                     break;
                 }
-            } 
-            for (clinthandaler2 clint : server.allclint_object ) {
-                
-               clint.sendingstream.writeUTF(",_(:);)( "+clintnumber);
             }
- 
+            for (clinthandaler2 clint : server.allclint_object) {
+
+                clint.sendingstream.writeUTF(",_(:);)( " + clintnumber);
+            }
+
             server.clint_list.remove(clintname);
             closingresourece();
 
         } catch (Exception e) {
-            System.out.println(e +" clinthandaler logged_out");
+            System.out.println(e + " clinthandaler logged_out");
+        }
+    }
+
+    public void send_friendrequest() {
+        try {
+
+            for (clinthandaler2 clint : server.allclint_object) {
+
+                if (clint.clintnumber == clintnumber_tosent) {
+                    clint.sendingstream.writeUTF(clintnumber + " &&&&&&&& " + clintname);
+                }
+            }
+        } catch (IOException e) {
+
+        }
+    }
+
+    public void friendrequest_ans() {
+        try {
+
+            for (clinthandaler2 clint : server.allclint_object) {
+
+                if (clint.clintnumber == clintnumber_tosent) {
+                    clint.sendingstream.writeUTF(clintnumber + " ^^^^^^^^");
+                }
+            }
+        } catch (IOException e) {
+
         }
     }
 }
