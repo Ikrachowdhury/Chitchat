@@ -5,12 +5,10 @@ import static clint.clintsocket.sendingstream;
 import clint.clintthread;
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.StringTokenizer;
 import java.util.Vector;
@@ -34,6 +32,7 @@ public class personalchatroomui extends clintsocket {
     private JMenuItem file, picture, object1, object2;
     private JTextPane allmsgtextpane, usermsgtextpane;
     public ImageIcon dp, dpclint;
+    public File file_of_friend;
 
     //imp other data type
     public String nameclint, clintname, clint, previousclint, previousmsg, personwhosent_numberstring, actualmsg, clintnumber_string, personwhosent_name, friendrequestname;
@@ -43,8 +42,9 @@ public class personalchatroomui extends clintsocket {
     //public clintsocket clintname;
     //public clintthread threadclass; //which will be created with clint name
     public static Vector<clintthread> clint_listofclintthreadclass = new Vector<>();
+    public ArrayList<String> Friend_list = new ArrayList<String>();
     static int logout;
-    public boolean clintnamebuttton_clicked = false,flag;
+    public boolean clintnamebuttton_clicked = false, flag;
 
     //frame  and global images
     JFrame frame = new JFrame();
@@ -62,15 +62,20 @@ public class personalchatroomui extends clintsocket {
         this.dp = dp;
         this.objectfilepath = objectfilepath;
         dpclint = new ImageIcon(serverdp);
+
         nameclint = new String();
+        myfriendlist = "D:\\2\\2.1\\All about project\\project\\ chitchat\\friendlistof " + name + ".txt";
+        file_of_friend = new File(myfriendlist);
+        try {
+            file_of_friend.createNewFile();
+        } catch (IOException ex) {
+            Logger.getLogger(personalchatroomui.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         setconnectiontoserver();
-
-        //clintsocket clintname=new clintsocket(name,objectfilepath); 
-        //clintname.setconnectiontoserver();
-        //clintname.recievemessegethread();
-        //System.out.println(clint.clintname);
+        fromFile_toFriendlist();
         framekeypersonalchatroom();
+
         //setting frame
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,7 +83,8 @@ public class personalchatroomui extends clintsocket {
         frame.setResizable(false);
         Image icon = Toolkit.getDefaultToolkit().getImage("C:\\Users\\ASUS\\Desktop\\iconlogo.png");
         frame.setIconImage(icon);
-        //frame.pack();
+
+        //frame.pack(); 
     }
 
     //gets the clintname after clintbutton is clicked
@@ -91,6 +97,7 @@ public class personalchatroomui extends clintsocket {
     }
 
     public void framekeypersonalchatroom() {
+
         logout = 0;
         frame.getContentPane().setBackground(Color.BLACK);
         frame.getRootPane().setBorder(BorderFactory.createCompoundBorder(
@@ -390,33 +397,32 @@ public class personalchatroomui extends clintsocket {
 
         jpanel2.add(emojibutton, gridbagconstrain2);
 
-        gridbagconstrain2.gridy = 3;
-        gridbagconstrain2.gridx = 3;
-        gridbagconstrain2.ipady = 0;
-        gridbagconstrain2.gridwidth = 1;
-        gridbagconstrain2.fill = GridBagConstraints.NONE;
-        gridbagconstrain2.insets = new Insets(0, 0, 20, 10);
-
-        jpanel2.add(picturebutton, gridbagconstrain2);
-
-        gridbagconstrain2.gridy = 3;
-        gridbagconstrain2.gridx = 4;
-        gridbagconstrain2.ipady = 0;
-        gridbagconstrain2.gridwidth = 1;
-        gridbagconstrain2.fill = GridBagConstraints.BOTH;
-        gridbagconstrain2.insets = new Insets(0, 0, 20, 0);
-
-        jpanel2.add(filebutton, gridbagconstrain2);
-
-        gridbagconstrain2.gridy = 3;
-        gridbagconstrain2.gridx = 5;
-        gridbagconstrain2.ipady = 0;
-        gridbagconstrain2.gridwidth = 1;
-        gridbagconstrain2.fill = GridBagConstraints.BOTH;
-        gridbagconstrain2.insets = new Insets(0, 0, 20, 0);
-
-        jpanel2.add(gamingzonebutton, gridbagconstrain2);
-
+//        gridbagconstrain2.gridy = 3;
+//        gridbagconstrain2.gridx = 3;
+//        gridbagconstrain2.ipady = 0;
+//        gridbagconstrain2.gridwidth = 1;
+//        gridbagconstrain2.fill = GridBagConstraints.NONE;
+//        gridbagconstrain2.insets = new Insets(0, 0, 20, 10);
+//
+//        jpanel2.add(picturebutton, gridbagconstrain2);
+//
+//        gridbagconstrain2.gridy = 3;
+//        gridbagconstrain2.gridx = 4;
+//        gridbagconstrain2.ipady = 0;
+//        gridbagconstrain2.gridwidth = 1;
+//        gridbagconstrain2.fill = GridBagConstraints.BOTH;
+//        gridbagconstrain2.insets = new Insets(0, 0, 20, 0);
+//
+//        jpanel2.add(filebutton, gridbagconstrain2);
+//
+//        gridbagconstrain2.gridy = 3;
+//        gridbagconstrain2.gridx = 5;
+//        gridbagconstrain2.ipady = 0;
+//        gridbagconstrain2.gridwidth = 1;
+//        gridbagconstrain2.fill = GridBagConstraints.BOTH;
+//        gridbagconstrain2.insets = new Insets(0, 0, 20, 0);
+//
+//        jpanel2.add(gamingzonebutton, gridbagconstrain2);
         //layout of jpanel3                              
         jpanel3.setLayout(new GridBagLayout());
         GridBagConstraints gridbagconstrain3 = new GridBagConstraints();
@@ -480,30 +486,39 @@ public class personalchatroomui extends clintsocket {
 
                             recievingstream = new DataInputStream(socket.getInputStream());
                             msg = recievingstream.readUTF();
-                            // System.out.println(msg+"  ashtese but jache na");
+
                             //for checking either its new clintname or the main msg
-                            //deciding the messege as token  
                             if (msg.contains("%c@")) {
 
-                                StringTokenizer token = new StringTokenizer(msg, "%c@", false); //c%@ is doken delimeter
-                                clintnumber_string = token.nextToken();
+                                //deciding the messege as token 
+                                StringTokenizer token = new StringTokenizer(msg, "%c@", false); //c%@ is token delimeter
+                                clintnumber_string = token.nextToken();//clintnumber comes as string
                                 clintname = token.nextToken();
+                                clintnumber = Integer.parseInt(clintnumber_string);//converting string clintnumber into int for better matching
 
-                                clintnumber = Integer.parseInt(clintnumber_string);
-
+                                //this part is for checking if the incoming clint is already frind or not 
+                                //if friend it makes friend flag true and clint is added to clint_listofclintthreadclass as friend
+                                boolean friend_flag = false;
                                 if (clintname != null) {
+                                    for (String friend : Friend_list) {
+                                        if (friend.equals(clintname)) {
+                                            friend_flag = true;
+                                        } else {
+                                            friend_flag = false;
+                                        }
+                                    }
                                     // calling thread class for clint && creating object for thread to handle each clint msg
-                                    clintthread clintthreadclass = new clintthread(clintname, clintnumber);
+                                    clintthread clintthreadclass = new clintthread(clintname, clintnumber, friend_flag);
                                     clint_listofclintthreadclass.add(clintthreadclass);
 
-                                    frame.setVisible(false);
                                     //creating button for active clint
+                                    frame.setVisible(false);//refresh starts
                                     JButton button = new JButton(clintname);
                                     button.setSize(300, 300);
                                     jpanel301.add(button);
-                                    frame.setVisible(true);
+                                    frame.setVisible(true);//refresh ends
 
-                                    //after clintname cliclicked chatbox will getting clint name and dp
+                                    //after clintname cliclicked chatbox will get clint name and dp and other options basis of friendship
                                     button.addActionListener(new ActionListener() {
 
                                         @Override
@@ -512,37 +527,39 @@ public class personalchatroomui extends clintsocket {
                                             //getting clintname
                                             nameclint = button.getText();
                                             getclintname(nameclint);
-                                           
 
                                             for (clintthread clint : clint_listofclintthreadclass) {
                                                 if (clint.name.equals(nameclint)) {
                                                     current_clintnumber = clint.number;
                                                     getclintnumber(current_clintnumber);
-                                                    flag = clint.friend;
-                                                    System.out.println(flag+" hoise");
+                                                    flag = clint.friend;//checks if the clicked clint is friend or not
+                                                    //flag is used later for providing friends special option(showing button)
+                                                    //or providing friend req option
                                                 }
                                             }
-
-                                            if (clintnamebuttton_clicked == true) {
-
-                                                //refresh start
-                                                frame.setVisible(false);
+//
+                                            if (clintnamebuttton_clicked == true) {//if any clintbutton is already clicked on we have to remove its elements from frame
+                                                frame.setVisible(false);//refresh start
                                                 jpanel2.remove(clintnamebuttton);
                                                 jpanel2.remove(dplabelclint);
 
-                                                if (flag == true) {
-                                                    dpandnamelabel(gridbagconstrain2, flag);
-                                                } else {
-                                                    dpandnamelabel(gridbagconstrain2, flag);
+                                                if (flag == true) {//if the clint is friend
+                                                    jpanel2.remove(friendship_statusbutton);
+                                                    dpandnamelabel(gridbagconstrain2, flag);//this methods sets the frame according to frindship flag
+
+                                                } else {//if the clint is not friend
+                                                    dpandnamelabel(gridbagconstrain2, flag);//^
+                                                    jpanel2.remove(picturebutton);
+                                                    jpanel2.remove(filebutton);
+                                                    jpanel2.remove(gamingzonebutton);
                                                 }
 
-                                                //refresh ends
-                                                frame.setVisible(true);
-                                            } else {
+                                                frame.setVisible(true);//refresh ends
+                                            } else {// for first time login frame
 
                                                 //refresh start
                                                 frame.setVisible(false);
-                                                dpandnamelabel(gridbagconstrain2, flag);
+                                                dpandnamelabel(gridbagconstrain2, flag);//^
                                                 //refresh ends
                                                 frame.setVisible(true);
                                             }
@@ -577,11 +594,11 @@ public class personalchatroomui extends clintsocket {
                                         }
                                     });
                                 }
-                            } else if (msg.contains(",_(:);)(")) {
+                            } //if the  clint goes offline ,removes the clint from clintlist
+                            else if (msg.contains(",_(:);)(")) {
 
-                                StringTokenizer token = new StringTokenizer(msg, ",_(:);)( ", false); //c%@ is doken delimeter
+                                StringTokenizer token = new StringTokenizer(msg, ",_(:);)( ", false); 
                                 clintnumber_string = token.nextToken();
-
                                 clintnumber = Integer.parseInt(clintnumber_string);
 
                                 for (clintthread clint : clint_listofclintthreadclass) {
@@ -597,19 +614,20 @@ public class personalchatroomui extends clintsocket {
                                         }
                                     }
                                 }
-                                if (clintnumber == current_clintnumber) {
+                                
+                                if (clintnumber == current_clintnumber) {//if current chathead clint goes offline
                                     frame.setVisible(false);
                                     jpanel2.remove(clintnamebuttton);
                                     jpanel2.remove(dplabelclint);
                                     frame.setVisible(true);
                                 }
 
-                            } else if (msg.contains("&&&&&&&&")) {
+                            }//if new friend request comes
+                            else if (msg.contains("&&&&&&&&")) {
 
                                 StringTokenizer token = new StringTokenizer(msg, " &&&&&&&&", false);
                                 String friendclintnumber_string = token.nextToken();
                                 friendrequestname = token.nextToken();
-
                                 friendrequestnumber = Integer.parseInt(friendclintnumber_string);
 
                                 int decission = JOptionPane.showConfirmDialog(frame, "Do you want to be friends with " + friendrequestname + " ?");
@@ -617,7 +635,8 @@ public class personalchatroomui extends clintsocket {
                                     sendingstream.writeUTF(friendrequestnumber + " ^^^^^^^^");
                                 }
 
-                            } else if (msg.endsWith("^^^^^^^^")) {
+                            }//if previously send friend request's reply comes
+                            else if (msg.endsWith("^^^^^^^^")) {
 
                                 StringTokenizer token = new StringTokenizer(msg, " ^^^^^^^^", false);
                                 String friendclintnumber_string = token.nextToken();
@@ -629,16 +648,18 @@ public class personalchatroomui extends clintsocket {
                                         clint.friend = true;
                                     }
                                 }
+                                FileOfFriendLsit(nameclint);//this method add new frind name to the friend list file
                                 frame.setVisible(false);
                                 jpanel2.remove(friendship_statusbutton);
+                                option(gridbagconstrain2);
                                 frame.setVisible(true);
 
-                            } else {
+                            }//if its actual msg 
+                            else {
                                 StringTokenizer st = new StringTokenizer(msg, "#", false);
                                 actualmsg = st.nextToken();
                                 personwhosent_numberstring = st.nextToken();
-                                personwhosent_name = st.nextToken();
-
+                                personwhosent_name = st.nextToken(); 
                                 personwhosent_number = Integer.parseInt(personwhosent_numberstring);
 
                                 //if the person chathead is on
@@ -758,6 +779,8 @@ public class personalchatroomui extends clintsocket {
             //gridbagconstrain1.insets = new Insets(0,0,0,0);
 
             jpanel2.add(friendship_statusbutton, gridbagconstrain2);
+        } else {
+            option(gridbagconstrain2);
         }
 
         friendship_statusbutton.addActionListener(new ActionListener() {
@@ -771,6 +794,76 @@ public class personalchatroomui extends clintsocket {
                 }
             }
         });
+
+    }
+
+    public void option(GridBagConstraints gridbagconstrain2) {
+
+        gridbagconstrain2.gridy = 3;
+        gridbagconstrain2.gridx = 3;
+        gridbagconstrain2.ipady = 0;
+        gridbagconstrain2.gridwidth = 1;
+        gridbagconstrain2.fill = GridBagConstraints.NONE;
+        gridbagconstrain2.insets = new Insets(0, 0, 20, 10);
+
+        jpanel2.add(picturebutton, gridbagconstrain2);
+
+        gridbagconstrain2.gridy = 3;
+        gridbagconstrain2.gridx = 4;
+        gridbagconstrain2.ipady = 0;
+        gridbagconstrain2.gridwidth = 1;
+        gridbagconstrain2.fill = GridBagConstraints.BOTH;
+        gridbagconstrain2.insets = new Insets(0, 0, 20, 0);
+
+        jpanel2.add(filebutton, gridbagconstrain2);
+
+        gridbagconstrain2.gridy = 3;
+        gridbagconstrain2.gridx = 5;
+        gridbagconstrain2.ipady = 0;
+        gridbagconstrain2.gridwidth = 1;
+        gridbagconstrain2.fill = GridBagConstraints.BOTH;
+        gridbagconstrain2.insets = new Insets(0, 0, 20, 0);
+
+        jpanel2.add(gamingzonebutton, gridbagconstrain2);
+    }
+    
+    
+    public void fromFile_toFriendlist() {
+        try {
+            if (file_of_friend.exists()) {
+                FileReader fileReader = new FileReader(file_of_friend);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    Friend_list.add(line);
+                }
+                fileReader.close();
+
+            } else {
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    public void FileOfFriendLsit(String friendname) {
+        try {
+
+            if (file_of_friend.exists()) {
+                BufferedWriter bw = new BufferedWriter(new FileWriter(file_of_friend, true));
+                bw.write(friendname);
+                Friend_list.add(friendname);
+                bw.newLine();
+
+                bw.close();
+            } else {
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -813,6 +906,7 @@ public class personalchatroomui extends clintsocket {
             g2d.drawRoundRect(x, y, width - 1, height - 1, 30, 30);
         }
     }
+ 
 
     @Override
     public int hashCode() {

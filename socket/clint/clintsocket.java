@@ -18,21 +18,19 @@ public class clintsocket {
     public static DataOutputStream sendingstream;
     public Thread sendMessage;
     public Thread readMessage;
-    public String msg, name, connectedclints;
+    public String msg, name, connectedclints, myfriendlist;
     public String clintnames, username;
     public Scanner scanner;
-    public File objectfilepath;
-    public static ArrayList<String> Friend_list = new ArrayList<String>();
-    //public ArrayList<String> clint_list;
+    public File objectfilepath, file; 
+    //public ArrayList<String> clint_list; 
 
     //for perameteraizing need  
     public clintsocket() {
-  //if needed
+        //if needed
     }
- 
+
     //setconnection
     public void setconnectiontoserver() {
-  
         try {
 
             ip = InetAddress.getLocalHost();
@@ -43,27 +41,13 @@ public class clintsocket {
             //creating resource 
 
             sendingstream.writeUTF(name + " %c@");
-
+            myfriendlist = "D:\\2\\2.1\\All about project\\project\\ chitchat\\friendlistof " + name + ".txt";
+            file = new File(myfriendlist);
+            file.createNewFile();
         } catch (Exception e) {
             System.out.println(e + "clintsocket");
         }
     }
+
     
-    public void fromFile_toFriendlist(){
-        
-    }
-    public void FileOfFriendLsit(String clintname,String friendname){
-         try {
-            String filename="friendlistof"+clintname+".txt";
-            BufferedWriter bw = new BufferedWriter(new FileWriter( filename, true));
-            bw.write(friendname);
-            bw.newLine();
-           
-            bw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-    }
-  
 }
