@@ -2,8 +2,6 @@ package server;
 
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
-import java.util.Objects;
 import java.util.StringTokenizer;
 
 public class clinthandaler2 implements Runnable {
@@ -11,11 +9,11 @@ public class clinthandaler2 implements Runnable {
     public Socket socketclint, socket;
     public DataInputStream recievingstream;
     public DataOutputStream sendingstream;
-    public String msg, name, actualmsg, recievingclint, clintname;
+    public String msg, name, actualmsg, recievingclint, clintname, filename;
     public serversocket server;
     public final int clintnumber;
-    public int clintnumber_tosent;
-    public boolean logout = false;
+    public int clintnumber_tosent, fileLength;
+    public boolean logout = false, its_afile = false;
 
     public clinthandaler2(serversocket server, int clintnumber, Socket socket, DataInputStream recievingstream,
             DataOutputStream sendingstream) {
@@ -27,8 +25,46 @@ public class clinthandaler2 implements Runnable {
         this.name = name;
         this.socket = socket;
         clintname = new String();
-        //System.out.println(clintnumber);
+        // System.out.println(clintnumber);
 
+    }
+
+    //file recieving  section and sending section
+    public void file_receiving_sendin() {
+        try {
+
+            for (clinthandaler2 clint : server.allclint_object) {
+                ////sending incoming file notice
+                if (clint.clintnumber == clintnumber_tosent) {
+                    clint.sendingstream.writeUTF(filename + "#" + clintnumber + "#" + clintname + "#" + " ~%~~");
+
+                    //file recieve
+                    fileLength = recievingstream.readInt();
+                    if (fileLength > 0) {
+                        byte[] fileContentBytes = new byte[fileLength];
+                        recievingstream.readFully(fileContentBytes, 0, fileContentBytes.length);
+
+                        //send file
+                        clint.sendingstream.writeInt(fileContentBytes.length);
+                        clint.sendingstream.write(fileContentBytes);
+//                File saveFile = new File("E:\\" + filename);
+//                FileOutputStream fout = new FileOutputStream(saveFile);
+//                fout.write(fileContentBytes);
+                    }
+//            //file send
+//            File f=new File("D:\\2\\2.1\\All about project\\project\\ chitchat\\friendlistof ikra jojo.txt");
+//            byte[] fileContentBytes = new byte[(int)f.length()];
+//            FileInputStream in = new FileInputStream(f);
+//            in.read(fileContentBytes);
+//            sendingstream.writeInt(fileContentBytes.length);
+//            sendingstream.write(fileContentBytes);
+                }
+            }
+            its_afile = false;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -37,36 +73,15 @@ public class clinthandaler2 implements Runnable {
         while (true) {
             if (logout == false) {
                 try {
-                    msg = recievingstream.readUTF();
-                    // System.out.println(msg);
-                    //System.out.println(clintnumber);
-                    if (msg.endsWith("%c@")) {
-                        msg_to_actualmsg();
-                        toall();
-                        alreadyconnectedpeoplelist();
-
-                    } //for first time registering mesg
-                    else if (msg.endsWith("**%#@*")) {
-                        createregisteredclintlist(msg);
-                    } //for logout indication
-                    else if (msg.endsWith(",_(:);)(")) {
-                        logged_out();
-                    } //for incoming friend request
-                    else if (msg.endsWith("&&&&&&&&")) {
-                        msg_to_actualmsg();
-                        send_friendrequest();
-                    } //for outgoing friend request ans
-                    else if (msg.endsWith("^^^^^^^^")) {
-                        msg_to_actualmsg();
-                        friendrequest_ans();
-                    } //if not breaks the msg
-                    else {
-                        msg_to_actualmsg();
-                        sendtoclint();
+                    if (its_afile == true) {
+                        file_receiving_sendin();
+                    } else {
+                        msg = recievingstream.readUTF();
+                        allfunction();
+                        // System.out.println(msg);
                     }
-                } catch (IOException e) {
-
-                    System.out.println(e + "clintHandeler");
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
             } else {
@@ -85,6 +100,36 @@ public class clinthandaler2 implements Runnable {
         } catch (IOException e) {
         }
 
+    }
+
+    public void allfunction() {
+        if (msg.endsWith("%c@")) {
+            msg_to_actualmsg();
+            toall();
+            alreadyconnectedpeoplelist();
+        } //for first time registering mesg
+        else if (msg.endsWith("**%#@*")) {
+            createregisteredclintlist(msg);
+        } //for logout indication
+        else if (msg.endsWith(",_(:);)(")) {
+            logged_out();
+        } //for incoming friend request
+        else if (msg.endsWith("&&&&&&&&")) {
+            msg_to_actualmsg();
+            send_friendrequest();
+        } //for outgoing friend request ans
+        else if (msg.endsWith("^^^^^^^^")) {
+            msg_to_actualmsg();
+            friendrequest_ans();
+        } //if its a incominf file
+        else if (msg.endsWith("$$@^")) {
+            its_afile = true;
+            msg_to_actualmsg();
+        } //if not breaks the msg
+        else {
+            msg_to_actualmsg();
+            sendtoclint();
+        }
     }
 
     public void createregisteredclintlist(String registeredclint) {
@@ -128,6 +173,13 @@ public class clinthandaler2 implements Runnable {
                 StringTokenizer token = new StringTokenizer(msg, " ^^^^^^^^", false);
                 recievingclint = token.nextToken();
                 clintnumber_tosent = Integer.parseInt(recievingclint);
+            } else if (msg.endsWith("$$@^")) {
+
+                StringTokenizer token = new StringTokenizer(msg, "#", false);
+
+                recievingclint = token.nextToken();
+                clintnumber_tosent = Integer.parseInt(recievingclint);
+                filename = token.nextToken();
 
             } else {
                 // break the string into message and recipient part 
@@ -210,10 +262,11 @@ public class clinthandaler2 implements Runnable {
                 clint.sendingstream.writeUTF(",_(:);)( " + clintnumber);
             }
 
-            server.clint_list.remove(clintname);
+            server.clint_list.remove(clintnumber + "%c@" + clintname);
+
             closingresourece();
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println(e + " clinthandaler logged_out");
         }
     }

@@ -8,14 +8,15 @@ import java.awt.*;
 import java.io.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.StringTokenizer;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Vector; 
 import javax.swing.border.AbstractBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.basic.BasicMenuBarUI;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -25,18 +26,21 @@ public class personalchatroomui extends clintsocket {
 
     private JPanel jpanel1, jpanel2, jpanel3, jpanel301, jpanel201;
     private JLabel dplabel, dplabelclint, logolabel, connectedfriendslabel, namelabel;
-    private JButton gamingzonebutton, filebutton, picturebutton, sendbutton, findpeoplebutton, emojibutton, clintnamebuttton, logout_button, friendship_statusbutton;
+    private JButton gamingzonebutton, filebutton, picturebutton, sendbutton, findpeoplebutton, emojibutton, clintnamebuttton, logout_button, friendship_statusbutton, shareditemmenu_button;
     private JScrollPane allmsgscrollpane, usermsgscrollpane, connectedfriendsscrollpane;
     private JMenuBar shareditemmenubar;
     private JMenu shareditemmenu;
     private JMenuItem file, picture, object1, object2;
     private JTextPane allmsgtextpane, usermsgtextpane;
     public ImageIcon dp, dpclint;
-    public File file_of_friend;
+    public File file_of_friend, selected_picture_tosend, selected_file_tosend;
+    public JFileChooser Picture_Chooser, file_chooser;
+    public Image picture_tosend;
+    public ImageIcon picture_tosend_icon;
 
     //imp other data type
-    public String nameclint, clintname, clint, previousclint, previousmsg, personwhosent_numberstring, actualmsg, clintnumber_string, personwhosent_name, friendrequestname;
-    public int clintnumber, current_clintnumber, personwhosent_number, friendrequestnumber;
+    public String nameclint, clintname, clint, previousclint, previousmsg, personwhosent_numberstring, actualmsg, clintnumber_string, personwhosent_name, friendrequestname, filename, filelenth_string;
+    public int clintnumber, current_clintnumber = -1, personwhosent_number, friendrequestnumber, fileLength;
     public Thread clintlist, clintchathead, msgchecker, threadclint;
     //File objectfilepath;
     //public clintsocket clintname;
@@ -44,7 +48,7 @@ public class personalchatroomui extends clintsocket {
     public static Vector<clintthread> clint_listofclintthreadclass = new Vector<>();
     public ArrayList<String> Friend_list = new ArrayList<String>();
     static int logout;
-    public boolean clintnamebuttton_clicked = false, flag;
+    public boolean clintnamebuttton_clicked = false, flag, button_createfalg = true, isfile = false;
 
     //frame  and global images
     JFrame frame = new JFrame();
@@ -59,18 +63,13 @@ public class personalchatroomui extends clintsocket {
 
         //super(name,objectfilepath); //if clitnsocket class has perameter
         this.name = name;
+        System.out.println(name);
         this.dp = dp;
         this.objectfilepath = objectfilepath;
         dpclint = new ImageIcon(serverdp);
 
         nameclint = new String();
-        myfriendlist = "D:\\2\\2.1\\All about project\\project\\ chitchat\\friendlistof " + name + ".txt";
-        file_of_friend = new File(myfriendlist);
-        try {
-            file_of_friend.createNewFile();
-        } catch (IOException ex) {
-            Logger.getLogger(personalchatroomui.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        file_of_friend = new File("friendlistof " + name + ".txt");
 
         setconnectiontoserver();
         fromFile_toFriendlist();
@@ -83,6 +82,12 @@ public class personalchatroomui extends clintsocket {
         frame.setResizable(false);
         Image icon = Toolkit.getDefaultToolkit().getImage("C:\\Users\\ASUS\\Desktop\\iconlogo.png");
         frame.setIconImage(icon);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                loggingout();
+            }
+        });
 
         //frame.pack(); 
     }
@@ -96,6 +101,27 @@ public class personalchatroomui extends clintsocket {
         return this.current_clintnumber = current_clintnumber;
     }
 
+    //file recieve method
+    public void recievefile() {
+        try { //file recieve
+
+            recievingstream = new DataInputStream(socket.getInputStream());
+
+            fileLength = recievingstream.readInt();
+            if (fileLength > 0) {
+                byte[] fileContentBytes = new byte[fileLength];
+                recievingstream.readFully(fileContentBytes, 0, fileContentBytes.length);
+                File saveFile = new File("E:\\" + name + "\\" + filename);
+                FileOutputStream fout = new FileOutputStream(saveFile);
+                fout.write(fileContentBytes);
+            }
+            isfile = false;
+        } catch (Exception ex) {
+            System.out.println("file recieve" + ex);
+        }
+    }
+
+    //frame key elements and socket work 
     public void framekeypersonalchatroom() {
 
         logout = 0;
@@ -130,56 +156,52 @@ public class personalchatroomui extends clintsocket {
                 )));
 
         namelabel = new JLabel(name);
-        namelabel.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+        namelabel.setFont(new Font(Font.SERIF, Font.BOLD, 30));
         namelabel.setForeground(Color.white);
-        namelabel.setBorder(BorderFactory.createCompoundBorder(
-                new CustomeBorder1(), new EmptyBorder(new Insets(10, 10, 10, 10)
-                )));
-
-        findpeoplebutton = new JButton("Find PEOPLE");
-        findpeoplebutton.setFont(new Font(Font.SERIF, Font.BOLD, 20));
-        findpeoplebutton.setForeground(Color.white);
-        findpeoplebutton.setBackground(new Color(1, 51, 20));
-        findpeoplebutton.setBorder(BorderFactory.createCompoundBorder(
-                new CustomeBorder(), new EmptyBorder(new Insets(10, 10, 10, 10)
-                )));
 
         logout_button = new JButton("Log out");
-        logout_button.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+        logout_button.setFont(new Font(Font.SERIF, Font.BOLD, 30));
         logout_button.setForeground(Color.white);
         logout_button.setBackground(new Color(1, 51, 20));
         logout_button.setBorder(BorderFactory.createCompoundBorder(
                 new CustomeBorder(), new EmptyBorder(new Insets(10, 10, 10, 10)
                 )));
 
-        shareditemmenubar = new JMenuBar();
-        shareditemmenubar.setUI(new BasicMenuBarUI() {
-            public void paint(Graphics g, JComponent c) {
-                g.setColor(new Color(1, 51, 20));
-                g.fillRect(0, 0, c.getWidth(), c.getHeight());
-            }
-        });
-
-        shareditemmenu = new JMenu("Shared Item");
-        shareditemmenu.setFont(new Font(Font.SERIF, Font.BOLD, 20));
-        shareditemmenu.setForeground(Color.WHITE);
-        shareditemmenu.setBackground(Color.BLACK);
-        shareditemmenubar.add(shareditemmenu);
-
-        file = new JMenuItem("Files");
-        file.setFont(new Font(Font.SERIF, Font.BOLD, 20));
-        file.setForeground(Color.white);
-        file.setBackground(Color.BLACK);
-        shareditemmenu.add(file);
-
-        picture = new JMenuItem("Pictures");
-        picture.setFont(new Font(Font.SERIF, Font.BOLD, 20));
-        picture.setForeground(Color.white);
-        picture.setBackground(Color.BLACK);
-        shareditemmenu.add(picture);
+        shareditemmenu_button = new JButton("Shared Item");
+        shareditemmenu_button.setFont(new Font(Font.SERIF, Font.BOLD, 30));
+        shareditemmenu_button.setForeground(Color.white);
+        shareditemmenu_button.setBackground(new Color(1, 51, 20));
+        shareditemmenu_button.setBorder(BorderFactory.createCompoundBorder(
+                new CustomeBorder(), new EmptyBorder(new Insets(10, 10, 10, 10)
+                )));
 
         logolabel = new JLabel(logo);
 
+//        shareditemmenubar = new JMenuBar();
+//        shareditemmenubar.setUI(new BasicMenuBarUI() {
+//            public void paint(Graphics g, JComponent c) {
+//                g.setColor(new Color(1, 51, 20));
+//                g.fillRect(0, 0, c.getWidth(), c.getHeight());
+//            }
+//        });
+//        
+//        shareditemmenu = new JMenu("Shared Item");
+//        shareditemmenu.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+//        shareditemmenu.setForeground(Color.WHITE);
+//        shareditemmenu.setBackground(Color.BLACK);
+//        shareditemmenubar.add(shareditemmenu);
+//
+//        file = new JMenuItem("Files");
+//        file.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+//        file.setForeground(Color.white);
+//        file.setBackground(Color.BLACK);
+//        shareditemmenu.add(file);
+//
+//        picture = new JMenuItem("Pictures");
+//        picture.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+//        picture.setForeground(Color.white);
+//        picture.setBackground(Color.BLACK);
+//        shareditemmenu.add(picture);
         //jpanel2 cpmponent 
         /*                             
     dplabelclint=new JLabel(dpclint);  
@@ -212,6 +234,7 @@ public class personalchatroomui extends clintsocket {
         usermsgtextpane.setBorder(BorderFactory.createCompoundBorder(
                 new CustomeBorder1(), new EmptyBorder(new Insets(10, 10, 10, 10)
                 )));
+        usermsgtextpane.setEditable(true);
 
         allmsgscrollpane = new JScrollPane(allmsgtextpane);
         allmsgscrollpane.setPreferredSize(new Dimension(500, 500));
@@ -226,15 +249,7 @@ public class personalchatroomui extends clintsocket {
         sendbutton.setBorder(BorderFactory.createCompoundBorder(
                 new CustomeBorder(), new EmptyBorder(new Insets(10, 10, 10, 10)
                 )));
-
-        emojibutton = new JButton("Emoji");
-        emojibutton.setFont(new Font(Font.SERIF, Font.BOLD, 20));
-        emojibutton.setForeground(Color.white);
-        emojibutton.setBackground(new Color(1, 51, 20));
-        emojibutton.setBorder(BorderFactory.createCompoundBorder(
-                new CustomeBorder(), new EmptyBorder(new Insets(10, 10, 10, 10)
-                )));
-
+ 
         picturebutton = new JButton("Picture");
         picturebutton.setFont(new Font(Font.SERIF, Font.BOLD, 20));
         picturebutton.setForeground(Color.white);
@@ -242,6 +257,8 @@ public class personalchatroomui extends clintsocket {
         picturebutton.setBorder(BorderFactory.createCompoundBorder(
                 new CustomeBorder(), new EmptyBorder(new Insets(10, 10, 10, 10)
                 )));
+        Picture_Chooser = new JFileChooser();
+        file_chooser = new JFileChooser();
 
         filebutton = new JButton("  File ");
         filebutton.setFont(new Font(Font.SERIF, Font.BOLD, 20));
@@ -250,15 +267,9 @@ public class personalchatroomui extends clintsocket {
         filebutton.setBorder(BorderFactory.createCompoundBorder(
                 new CustomeBorder(), new EmptyBorder(new Insets(10, 10, 10, 10)
                 )));
-
-        gamingzonebutton = new JButton("Game");
-        gamingzonebutton.setFont(new Font(Font.SERIF, Font.BOLD, 20));
-        gamingzonebutton.setForeground(Color.white);
-        gamingzonebutton.setBackground(new Color(1, 51, 20));
-        gamingzonebutton.setBorder(BorderFactory.createCompoundBorder(
-                new CustomeBorder(), new EmptyBorder(new Insets(10, 10, 10, 10)
-                )));
-
+ 
+        
+        
         //jpanel3 component
         connectedfriendslabel = new JLabel("Connected People");
         connectedfriendslabel.setFont(new Font(Font.SERIF, Font.BOLD, 20));
@@ -302,7 +313,7 @@ public class personalchatroomui extends clintsocket {
         gridbagconstrain1.fill = GridBagConstraints.CENTER;
         gridbagconstrain1.insets = new Insets(0, 0, 20, 0);
 
-        jpanel1.add(findpeoplebutton, gridbagconstrain1);
+        jpanel1.add(logout_button, gridbagconstrain1);
 
         gridbagconstrain1.gridy = 3;
         gridbagconstrain1.gridx = 1;
@@ -311,18 +322,9 @@ public class personalchatroomui extends clintsocket {
         gridbagconstrain1.fill = GridBagConstraints.CENTER;
         gridbagconstrain1.insets = new Insets(0, 0, 20, 0);
 
-        jpanel1.add(logout_button, gridbagconstrain1);
+        jpanel1.add(shareditemmenu_button, gridbagconstrain1);
 
         gridbagconstrain1.gridy = 4;
-        gridbagconstrain1.gridx = 1;
-        gridbagconstrain1.ipady = 0;
-        gridbagconstrain1.gridwidth = 1;
-        gridbagconstrain1.fill = GridBagConstraints.CENTER;
-        gridbagconstrain1.insets = new Insets(0, 0, 20, 0);
-
-        jpanel1.add(shareditemmenubar, gridbagconstrain1);
-
-        gridbagconstrain1.gridy = 5;
         gridbagconstrain1.gridx = 1;
         gridbagconstrain1.ipady = 0;
         gridbagconstrain1.gridwidth = 1;
@@ -387,15 +389,7 @@ public class personalchatroomui extends clintsocket {
         gridbagconstrain2.insets = new Insets(0, 0, 10, 0);
 
         jpanel2.add(sendbutton, gridbagconstrain2);
-
-        gridbagconstrain2.gridy = 3;
-        gridbagconstrain2.gridx = 2;
-        gridbagconstrain2.ipady = 0;
-        gridbagconstrain2.gridwidth = 1;
-        gridbagconstrain2.fill = GridBagConstraints.BOTH;
-        gridbagconstrain2.insets = new Insets(0, 0, 10, 0);
-
-        jpanel2.add(emojibutton, gridbagconstrain2);
+ 
 
 //        gridbagconstrain2.gridy = 3;
 //        gridbagconstrain2.gridx = 3;
@@ -483,10 +477,8 @@ public class personalchatroomui extends clintsocket {
                 while (true) {
                     if (logout == 0) {
                         try {
-
-                            recievingstream = new DataInputStream(socket.getInputStream());
                             msg = recievingstream.readUTF();
-
+                            System.out.println(msg);
                             //for checking either its new clintname or the main msg
                             if (msg.contains("%c@")) {
 
@@ -497,7 +489,7 @@ public class personalchatroomui extends clintsocket {
                                 clintnumber = Integer.parseInt(clintnumber_string);//converting string clintnumber into int for better matching
 
                                 //this part is for checking if the incoming clint is already frind or not 
-                                //if friend it makes friend flag true and clint is added to clint_listofclintthreadclass as friend
+                                //if friend it makes friend flag true and clint is added to clint_listofclintthreadclass 
                                 boolean friend_flag = false;
                                 if (clintname != null) {
                                     for (String friend : Friend_list) {
@@ -507,13 +499,13 @@ public class personalchatroomui extends clintsocket {
                                             friend_flag = false;
                                         }
                                     }
+
                                     // calling thread class for clint && creating object for thread to handle each clint msg
                                     clintthread clintthreadclass = new clintthread(clintname, clintnumber, friend_flag);
                                     clint_listofclintthreadclass.add(clintthreadclass);
 
-                                    //creating button for active clint
-                                    frame.setVisible(false);//refresh starts
                                     JButton button = new JButton(clintname);
+                                    frame.setVisible(false);//refresh starts 
                                     button.setSize(300, 300);
                                     jpanel301.add(button);
                                     frame.setVisible(true);//refresh ends
@@ -523,7 +515,8 @@ public class personalchatroomui extends clintsocket {
 
                                         @Override
                                         public void actionPerformed(ActionEvent e) {
-
+                                            //
+                                            usermsgtextpane.setEditable(true);
                                             //getting clintname
                                             nameclint = button.getText();
                                             getclintname(nameclint);
@@ -556,7 +549,7 @@ public class personalchatroomui extends clintsocket {
 
                                                 frame.setVisible(true);//refresh ends
                                             } else {// for first time login frame
-
+                                                usermsgtextpane.setEditable(true);
                                                 //refresh start
                                                 frame.setVisible(false);
                                                 dpandnamelabel(gridbagconstrain2, flag);//^
@@ -593,11 +586,12 @@ public class personalchatroomui extends clintsocket {
 
                                         }
                                     });
+
                                 }
                             } //if the  clint goes offline ,removes the clint from clintlist
                             else if (msg.contains(",_(:);)(")) {
 
-                                StringTokenizer token = new StringTokenizer(msg, ",_(:);)( ", false); 
+                                StringTokenizer token = new StringTokenizer(msg, ",_(:);)( ", false);
                                 clintnumber_string = token.nextToken();
                                 clintnumber = Integer.parseInt(clintnumber_string);
 
@@ -605,20 +599,27 @@ public class personalchatroomui extends clintsocket {
 
                                     if (clint.number == clintnumber) {
                                         for (int i = 0;; i++) {
+                                            frame.setVisible(false);
                                             JButton button = (JButton) jpanel301.getComponent(i);
                                             String name = button.getText();
                                             if (clint.name.equals(name)) {
                                                 jpanel301.remove(i);
+                                                frame.setVisible(true);
                                                 break;
                                             }
                                         }
+                                        clint_listofclintthreadclass.remove(clint);
+                                        break;
                                     }
                                 }
-                                
-                                if (clintnumber == current_clintnumber) {//if current chathead clint goes offline
+                                //if current chathead clint goes offline 
+                                if (clintnumber == current_clintnumber) {
                                     frame.setVisible(false);
                                     jpanel2.remove(clintnamebuttton);
                                     jpanel2.remove(dplabelclint);
+                                    jpanel2.remove(friendship_statusbutton);
+                                    allmsgtextpane.setText(null);
+                                    usermsgtextpane.setEditable(false);
                                     frame.setVisible(true);
                                 }
 
@@ -633,6 +634,25 @@ public class personalchatroomui extends clintsocket {
                                 int decission = JOptionPane.showConfirmDialog(frame, "Do you want to be friends with " + friendrequestname + " ?");
                                 if (decission == JOptionPane.YES_OPTION) {
                                     sendingstream.writeUTF(friendrequestnumber + " ^^^^^^^^");
+                                    String friend_name = new String();
+                                    for (clintthread clint : clint_listofclintthreadclass) {
+                                        if (clint.number == friendrequestnumber) {
+                                            clint.friend = true;
+                                            friend_name = clint.name;
+                                        }
+                                    }
+//                                    //creates file for friend to hold shared file
+//                                    File friend_filepath = new File("E:\\" + friend_name);
+//                                    friend_filepath.mkdir();
+
+                                    FileOfFriendLsit(friend_name);
+                                    if (friendrequestnumber == current_clintnumber) {
+                                        frame.setVisible(false);
+                                        jpanel2.remove(friendship_statusbutton);
+                                        option(gridbagconstrain2);
+                                        frame.setVisible(true);
+
+                                    }
                                 }
 
                             }//if previously send friend request's reply comes
@@ -641,25 +661,43 @@ public class personalchatroomui extends clintsocket {
                                 StringTokenizer token = new StringTokenizer(msg, " ^^^^^^^^", false);
                                 String friendclintnumber_string = token.nextToken();
 
+                                String friend_name = new String();
                                 friendrequestnumber = Integer.parseInt(friendclintnumber_string);
 
                                 for (clintthread clint : clint_listofclintthreadclass) {
                                     if (clint.number == friendrequestnumber) {
                                         clint.friend = true;
+                                        friend_name = clint.name;
                                     }
                                 }
-                                FileOfFriendLsit(nameclint);//this method add new frind name to the friend list file
+//                                //creates new folder for  the friend to hold incoming file
+//                                File friend_filepath = new File("E:\\" + friend_name);
+//                                friend_filepath.mkdir();
+
+                                FileOfFriendLsit(friend_name);//this method add new frind name to the friend list file
                                 frame.setVisible(false);
                                 jpanel2.remove(friendship_statusbutton);
                                 option(gridbagconstrain2);
                                 frame.setVisible(true);
 
-                            }//if its actual msg 
+                            }//if a file is coming 
+                            else if (msg.endsWith("~%~~")) {
+                                StringTokenizer token = new StringTokenizer(msg, "#", false);
+
+                                filename = token.nextToken();
+                                System.out.println(filename);
+                                personwhosent_numberstring = token.nextToken();
+                                personwhosent_name = token.nextToken();
+                                personwhosent_number = Integer.parseInt(personwhosent_numberstring);
+                                recievefile();
+                                isfile = true;
+
+                            } //if its actual msg 
                             else {
                                 StringTokenizer st = new StringTokenizer(msg, "#", false);
                                 actualmsg = st.nextToken();
                                 personwhosent_numberstring = st.nextToken();
-                                personwhosent_name = st.nextToken(); 
+                                personwhosent_name = st.nextToken();
                                 personwhosent_number = Integer.parseInt(personwhosent_numberstring);
 
                                 //if the person chathead is on
@@ -696,19 +734,9 @@ public class personalchatroomui extends clintsocket {
             public void actionPerformed(ActionEvent e) {
                 //getting msg from textpane
                 msg = usermsgtextpane.getText();
-
-                //setting msg to chatbox
-                allmsgtextpane.setText(allmsgtextpane.getText().trim() + "\n" + " You" + ": " + msg);
-                for (clintthread clint : clint_listofclintthreadclass) {
-                    if (clint.number == current_clintnumber) {
-                        clint.msgelist.add(" You" + ": " + msg);
-                    }
-                }
-                usermsgtextpane.setText(null);
-
-                //sending msg to server for specific clint
                 try {
-                    sendingstream.writeUTF(msg + "#" + current_clintnumber);
+                    // sendingstream.writeUTF(msg + "#" + current_clintnumber);
+                    sendingstream.writeUTF(msg);
                     //System.out.println(nameclint+"lol");
                 } catch (Exception ex) {
                     System.out.println("personalchatroomui sendbutton" + ex);
@@ -720,16 +748,45 @@ public class personalchatroomui extends clintsocket {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    logout = 1;
-                    sendingstream.writeUTF("logged out ,_(:);)(");
-
-                } catch (Exception ex) {
-                    System.out.println("personalchatroomui sendbutton" + ex);
-                }
+                loggingout();
             }
         });
 
+        picturebutton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                picture_selection();
+            }
+        });
+
+        filebutton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                file_selection();
+            }
+        });
+
+        shareditemmenu_button.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FileShow show = new FileShow("E:\\" + name + "\\");
+                show.display();
+            }
+        });
+
+    }
+
+    public void loggingout() {
+        try {
+            logout = 1;
+            sendingstream.writeUTF("logged out ,_(:);)(");
+
+        } catch (Exception ex) {
+            System.out.println("personalchatroomui loggingout" + ex);
+        }
     }
 
     //shows dp and name for each clint name clicked
@@ -800,7 +857,7 @@ public class personalchatroomui extends clintsocket {
     public void option(GridBagConstraints gridbagconstrain2) {
 
         gridbagconstrain2.gridy = 3;
-        gridbagconstrain2.gridx = 3;
+        gridbagconstrain2.gridx = 2;
         gridbagconstrain2.ipady = 0;
         gridbagconstrain2.gridwidth = 1;
         gridbagconstrain2.fill = GridBagConstraints.NONE;
@@ -809,25 +866,17 @@ public class personalchatroomui extends clintsocket {
         jpanel2.add(picturebutton, gridbagconstrain2);
 
         gridbagconstrain2.gridy = 3;
-        gridbagconstrain2.gridx = 4;
+        gridbagconstrain2.gridx = 3;
         gridbagconstrain2.ipady = 0;
         gridbagconstrain2.gridwidth = 1;
         gridbagconstrain2.fill = GridBagConstraints.BOTH;
         gridbagconstrain2.insets = new Insets(0, 0, 20, 0);
 
         jpanel2.add(filebutton, gridbagconstrain2);
-
-        gridbagconstrain2.gridy = 3;
-        gridbagconstrain2.gridx = 5;
-        gridbagconstrain2.ipady = 0;
-        gridbagconstrain2.gridwidth = 1;
-        gridbagconstrain2.fill = GridBagConstraints.BOTH;
-        gridbagconstrain2.insets = new Insets(0, 0, 20, 0);
-
-        jpanel2.add(gamingzonebutton, gridbagconstrain2);
+ 
     }
-    
-    
+
+    //frinds name to file of frinedlist to frienlist array
     public void fromFile_toFriendlist() {
         try {
             if (file_of_friend.exists()) {
@@ -840,7 +889,7 @@ public class personalchatroomui extends clintsocket {
                 fileReader.close();
 
             } else {
-
+                file_of_friend.createNewFile();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -848,6 +897,7 @@ public class personalchatroomui extends clintsocket {
         }
     }
 
+    //add friend name to the file of friendlist
     public void FileOfFriendLsit(String friendname) {
         try {
 
@@ -859,12 +909,71 @@ public class personalchatroomui extends clintsocket {
 
                 bw.close();
             } else {
-
+                file_of_friend.createNewFile();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    //select picture from file
+    public void picture_selection() {
+        try {
+            Picture_Chooser.setFileFilter(new FileNameExtensionFilter("Open Image", "jpg", "png", "jpeg"));
+            int returnVal = Picture_Chooser.showOpenDialog(allmsgtextpane);
+
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                selected_picture_tosend = Picture_Chooser.getSelectedFile();
+
+                int decission = JOptionPane.showConfirmDialog(frame, "Do you want to send the file " +selected_picture_tosend.getName() + " ?");
+                if (decission == JOptionPane.YES_OPTION) {
+                    sendingstream.writeUTF(current_clintnumber + "#" + selected_picture_tosend.getName() + "#" + " $$@^");
+
+                    byte[] bytearray = new byte[(int) selected_picture_tosend.length()];
+                    FileInputStream in = new FileInputStream(selected_picture_tosend);
+                    in.read(bytearray);
+                    sendingstream.writeInt(bytearray.length);
+                    sendingstream.write(bytearray);
+                }
+                allmsgtextpane.setText(selected_picture_tosend.getName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    //select specific file from files
+    public void file_selection() {
+        try {
+            file_chooser.setFileFilter(new FileNameExtensionFilter("Files", "txt", "TXT", "doc", "docx"));
+            int returnVal = file_chooser.showOpenDialog(allmsgtextpane);
+
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                selected_file_tosend = file_chooser.getSelectedFile();
+
+                int decission = JOptionPane.showConfirmDialog(frame, "Do you want to send the file " + selected_file_tosend.getName() + " ?");
+                if (decission == JOptionPane.YES_OPTION) {
+                    sendingstream.writeUTF(current_clintnumber + "#" + selected_file_tosend.getName() + "#" + " $$@^");
+
+                    byte[] bytearray = new byte[(int) selected_file_tosend.length()];
+                    FileInputStream in = new FileInputStream(selected_file_tosend);
+                    in.read(bytearray);
+                    sendingstream.writeInt(bytearray.length);
+                    sendingstream.write(bytearray);
+//                    int count;
+//                    while ((count = in.read(bytearray)) > 0) {
+//                        sendingstream.write(bytearray, 0, count);
+//                    }
+//                    sendingstream.write(0);
+                }
+                allmsgtextpane.setText(selected_file_tosend.getName());
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //design of the borders
@@ -906,7 +1015,6 @@ public class personalchatroomui extends clintsocket {
             g2d.drawRoundRect(x, y, width - 1, height - 1, 30, 30);
         }
     }
- 
 
     @Override
     public int hashCode() {

@@ -261,6 +261,7 @@ public class loginwindow extends JFrame{
                      File filepath=new  File(usernameField.getText()+".txt"); 
                      objectread user= new objectread(filepath.getAbsolutePath()); 
                      personalchatroomui userchatroom=new personalchatroomui( user.dp,user.username+" "+user.nickname,filepath );
+                      //Sharefilechatroomui userchatroom=new Sharefilechatroomui( user.dp,user.username+" "+user.nickname,filepath );
                      //clintsocket clint=new clintsocket(user.dp,user.username+" "+user.nickname,filepath); 
                      setVisible(true);
                      //clintsocket clint=new clintsocket(usernameField.getText(),filepath); 

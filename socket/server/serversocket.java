@@ -1,14 +1,9 @@
 package server;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.InetAddress;
+import java.io.*;  
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList; 
 
 public class serversocket extends Thread {
 
@@ -17,8 +12,8 @@ public class serversocket extends Thread {
 
     public ServerSocket sserversocket;
     public Socket socketclint;
-    public DataInputStream recievingstream;
-    public DataOutputStream sendingstream;
+    public DataInputStream recievingstream; 
+    public DataOutputStream sendingstream; 
     public Thread threadforeachclint, incommingsocketthread, clintlistcreatethread;
     public int clintnumber = 0;
 
@@ -30,7 +25,7 @@ public class serversocket extends Thread {
         try {
             sserversocket = new ServerSocket(666);
 
-        } catch (IOException e) {
+        } catch (IOException e) { 
         }
 
     }
@@ -40,13 +35,12 @@ public class serversocket extends Thread {
     public void run() {
 
         while (true) {
-            try {
-
-                socketclint = sserversocket.accept();                                         //ps this while loop is for new incoming socket not in comming msg
+            try { 
+                
+                socketclint = sserversocket.accept();//ps this while loop is for new incoming socket not in comming msg
                 sendingstream = new DataOutputStream(socketclint.getOutputStream());        //the new incomming msg is handaled by clinthandaler handaler thread class for each socket
-                recievingstream = new DataInputStream(socketclint.getInputStream());
-
-                clinthandaler2 clint = new clinthandaler2(this, clintnumber, socketclint, recievingstream, sendingstream);
+                recievingstream =new DataInputStream(socketclint.getInputStream());  
+                clinthandaler2 clint = new clinthandaler2(this, clintnumber, socketclint, recievingstream, sendingstream); 
                 threadforeachclint = new Thread(clint);
                 allclint_object.add(clint);
                 threadforeachclint.start();

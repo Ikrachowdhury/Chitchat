@@ -14,8 +14,8 @@ public class clintsocket {
     public static int ServerPort = 666;
     public InetAddress ip;
     public Socket socket;
-    public DataInputStream recievingstream;
-    public static DataOutputStream sendingstream;
+    public DataInputStream recievingstream; 
+    public static DataOutputStream sendingstream; 
     public Thread sendMessage;
     public Thread readMessage;
     public String msg, name, connectedclints, myfriendlist;
@@ -35,7 +35,9 @@ public class clintsocket {
 
             ip = InetAddress.getLocalHost();
             socket = new Socket(ip, ServerPort);
+            //socket = new Socket("192.168.1.105", ServerPort);
             sendingstream = new DataOutputStream(socket.getOutputStream());
+            recievingstream = new DataInputStream(socket.getInputStream());
             System.out.println(ip);
             //sending name to server
             //creating resource 
