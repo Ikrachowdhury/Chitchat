@@ -5,12 +5,12 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class accountdata {
-  
+    boolean exists,available;
     private ArrayList<userstructure> accounts;
     
       public accountdata() { 
         accounts = new ArrayList<>();
-        populateAccounts(" D:\\2\\spl project\\messenger\\ ui\\datafile1.txt");
+        populateAccounts("D:\\2\\2.1\\All about project\\project\\ chitchat\\datafile1.txt");
     }
  
 
@@ -24,7 +24,7 @@ public class accountdata {
                 while ((line = bufferedReader.readLine()) != null) {
                     String trimmed = line.trim();
                     String[] splitted = trimmed.split(" ");
-                    userstructure u = new userstructure(splitted[1], splitted[0], splitted[2], splitted[3]);
+                    userstructure u = new userstructure(splitted[0], splitted[1], splitted[2], splitted[3]);
                     accounts.add(u);
                 }
                 fileReader.close();
@@ -35,14 +35,31 @@ public class accountdata {
             e.printStackTrace();
         }
     }
+    
+  
 
     public    boolean checkCredentials(String username, String password) {
         for (userstructure acct : accounts) {
+          
             if (acct.getUsername().equals(username) && acct.getPwd().equals(password)) {
-                return   false;
+                exists=true  ;
+                break;
             }
         }
-        return  true;
+        return  exists;
+    }
+    
+    public    boolean checkAvaiability(String username) {
+        available=true;
+        for (userstructure acct : accounts) {
+            System.out.println(acct.getUsername().equals(username));
+            if (acct.getUsername().equals(username)) {
+                available=false;
+            }else{
+               available=true; 
+            }
+        }
+        return available;
     }
 
     /**
@@ -51,7 +68,7 @@ public class accountdata {
     private void addNewAccount(String pwd, String name, String nick, String email) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("datafile1.txt", true));
-            bw.write(name + " " + nick + " " + pwd + " " + email);
+            bw.write(pwd + " " + name + " " + nick + " " + email);
             bw.newLine();
            
             bw.close();

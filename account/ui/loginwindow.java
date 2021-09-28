@@ -26,7 +26,7 @@ import javax.swing.border.EmptyBorder;
   
 public class loginwindow extends JFrame{ 
  private JPanel jpanel1,jpanel2;
- private JLabel usernamelabel ,passwordlabel,imagelabel,loginlabel,newherelabel,iconlogolabel,backgroundlabel,welcomelabel2,welcomelabel3,welcomelabel1;
+ private JLabel usernamelabel ,passwordlabel,loginlabel,newherelabel,backgroundlabel,welcomelabel2,welcomelabel3,welcomelabel1;
  private JTextField usernameField;
  private JPasswordField passwordField;
  private JButton submitButton,createButton;  
@@ -253,17 +253,18 @@ public class loginwindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                accountdata  aaccountdata=new accountdata();
+                 accountdata  aaccountdata=new accountdata();
                  boolean  exist ;
+                 
                  exist = aaccountdata.checkCredentials(usernameField.getText(),String.valueOf(passwordField.getPassword()));
                  
                 if (exist!=false) {  
                      File filepath=new  File(usernameField.getText()+".txt"); 
                      objectread user= new objectread(filepath.getAbsolutePath()); 
-                     personalchatroomui userchatroom=new personalchatroomui( user.dp,user.username+" "+user.nickname,filepath );
+                     personalchatroomui userchatroom=new personalchatroomui(user.username+" "+user.nickname,filepath );
                       //Sharefilechatroomui userchatroom=new Sharefilechatroomui( user.dp,user.username+" "+user.nickname,filepath );
                      //clintsocket clint=new clintsocket(user.dp,user.username+" "+user.nickname,filepath); 
-                     setVisible(true);
+                     setVisible(false);
                      //clintsocket clint=new clintsocket(usernameField.getText(),filepath); 
                       //serversocket serve=new serversocket(null);
                      

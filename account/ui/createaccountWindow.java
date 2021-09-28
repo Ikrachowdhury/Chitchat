@@ -13,6 +13,8 @@ import javax.swing.border.AbstractBorder;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
  
 public class createaccountWindow extends JFrame   {
@@ -23,8 +25,8 @@ public class createaccountWindow extends JFrame   {
      JPasswordField passwordField;
      JTextField emailfield;
     private JButton submitButton ;
-    private accountdata aaccounts; 
-    private dpchooser dp ;
+    private accountdata aaccounts;  
+    private ObjectFileCreate objectCreate; 
      
     //private JFileChooser imagechooser;
     @SuppressWarnings("unused")
@@ -32,7 +34,7 @@ public class createaccountWindow extends JFrame   {
     
  
     public createaccountWindow( ) {
-       
+        aaccounts =new accountdata();
         framekeycreatewindow();
         setVisible(true);
         setDefaultCloseOperation(JFrame. DISPOSE_ON_CLOSE);
@@ -63,7 +65,7 @@ public class createaccountWindow extends JFrame   {
         Image image = img.getScaledInstance( 1250,850 ,Image.SCALE_SMOOTH); 
         this.setContentPane(new JLabel(new ImageIcon ( image)));
          
-         Font fieldfont = new Font("Arial", Font.PLAIN, 20); 
+         Font fieldfont = new Font("Arial", Font.BOLD,15); 
          
          //Border thickBorder = new LineBorder(Color.white, 5);
          
@@ -81,7 +83,7 @@ public class createaccountWindow extends JFrame   {
         nickField = new JTextField();
         nickField.setFont(fieldfont);
         nickField.setBackground(Color.white);
-        nickField.setForeground(Color.green);
+        nickField.setForeground(Color.BLACK);
         nickField.setColumns(15);
         nickField.setBorder(BorderFactory.createCompoundBorder(
                     new CustomeBorder() ,new EmptyBorder(new Insets(10,10,10,10)
@@ -99,6 +101,7 @@ public class createaccountWindow extends JFrame   {
         
         
         emailfield = new JTextField(); 
+        passwordField.setFont(fieldfont);
         emailfield.setBackground(Color.white);
         emailfield.setForeground(Color.black);
         //picturefield.setColumns(15);
@@ -216,9 +219,7 @@ public class createaccountWindow extends JFrame   {
         gridbagconstrain.fill = GridBagConstraints.CENTER;
         gridbagconstrain.insets = new Insets(5,100,30, 10);
         jpanel1.add(submitButton,gridbagconstrain );
-        
-          
-        
+     
        submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -230,15 +231,21 @@ public class createaccountWindow extends JFrame   {
                 else {  
                        //JOptionPane.showMessageDialog(jpanel1 ,"Thanx for signing up"); 
                          // setVisible(false); 
-                          
-                        aaccounts =new accountdata();
+                        boolean available= aaccounts.checkAvaiability(usernameField.getText());
+                        
+                        if(available==false){
+                             JOptionPane.showMessageDialog(jpanel1, "This username is not Available");
+                             usernameField.setText("");
+                            
+                        }else{  
                         userstructure newUser= aaccounts.createAccount(String.valueOf(passwordField.getPassword()), usernameField.getText(),
                         nickField.getText(), emailfield.getText() ); 
                         String  name=usernameField.getText() ;
                         String filename=name+".txt";
-                        dp= new dpchooser(newUser,filename,name) ;  //this dpchooser class select dp and also creates a final users object file
+                        objectCreate=new ObjectFileCreate(newUser,filename,name);
+                        //dpl= new dpchooser(newUser,filename,name) ;  //this dpchooser class select dp and also creates a final users object file
                        
-                          
+                        }    
                 }
             }
         });
@@ -262,6 +269,7 @@ public class createaccountWindow extends JFrame   {
      
         
      }
+     
 
    
 

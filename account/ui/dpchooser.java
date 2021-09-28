@@ -19,6 +19,10 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class dpchooser  implements  Serializable  {
+
+    static void setFileFilter(FileNameExtensionFilter fileNameExtensionFilter) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
  
     private JFileChooser  dpchooser;
     private JButton imagebutton,submitbutton;
@@ -128,8 +132,7 @@ public class dpchooser  implements  Serializable  {
                 if(file.exists()){
                     try { 
                         ObjectOutputStream objectwrite=new ObjectOutputStream(new FileOutputStream(file));
-                        objectwrite.writeObject(object);
-                        objectwrite.writeObject(dp);
+                        objectwrite.writeObject(object); 
                         objectwrite.writeObject(inetAddress);
                         objectwrite.close();
                         
