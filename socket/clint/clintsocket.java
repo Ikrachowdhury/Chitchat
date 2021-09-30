@@ -35,7 +35,7 @@ public class clintsocket {
 
             ip = InetAddress.getLocalHost();
             socket = new Socket(ip, ServerPort);
-            //socket = new Socket("192.168.1.105", ServerPort);
+            //socket = new Socket("192.168.0.108", ServerPort);
             sendingstream = new DataOutputStream(socket.getOutputStream());
             recievingstream = new DataInputStream(socket.getInputStream());
             System.out.println(ip);
@@ -43,7 +43,7 @@ public class clintsocket {
             //creating resource 
 
             sendingstream.writeUTF(name + " %c@");
-            myfriendlist = "D:\\2\\2.1\\All about project\\project\\ chitchat\\friendlistof " + name + ".txt";
+            myfriendlist = "friendlistof " + name + ".txt";
             file = new File(myfriendlist);
             file.createNewFile();
         } catch (Exception e) {

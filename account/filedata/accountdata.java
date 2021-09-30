@@ -10,7 +10,7 @@ public class accountdata {
     
       public accountdata() { 
         accounts = new ArrayList<>();
-        populateAccounts("D:\\2\\2.1\\All about project\\project\\ chitchat\\datafile1.txt");
+        populateAccounts("datafile1.txt");
     }
  
 
@@ -29,7 +29,7 @@ public class accountdata {
                 }
                 fileReader.close();
             } else {
-                file.mkdirs(); 
+                file.createNewFile();
             }
         } catch (IOException e) {
             e.printStackTrace();
