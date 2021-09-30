@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.border.AbstractBorder;
 import javax.swing.border.EmptyBorder;
@@ -213,6 +214,8 @@ public class createaccountWindow extends JFrame {
                         String name = usernameField.getText();
                         String filename = name + ".txt";
                         objectCreate = new ObjectFileCreate(newUser, filename, name);
+                        File f = new File("E:\\"+usernameField.getText()+" "+nickField.getText());
+                        f.mkdir();
 
                         loginPage = new loginwindow();
                         //dpl= new dpchooser(newUser,filename,name) ;  //this dpchooser class select dp and also creates a final users object file

@@ -52,7 +52,7 @@ public class accountdata {
     public    boolean checkAvaiability(String username) {
         available=true;
         for (userstructure acct : accounts) {
-            System.out.println(acct.getUsername().equals(username));
+             
             if (acct.getUsername().equals(username)) {
                 available=false;
             }else{
