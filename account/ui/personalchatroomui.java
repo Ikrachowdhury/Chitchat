@@ -1,6 +1,7 @@
 package ui;
 
 import clint.clintsocket;
+import filedata.chathistory;
 import tictactoy.TictacMainFrame;
 import dictionary.DictionaryMainFrame;
 import static clint.clintsocket.sendingstream;
@@ -52,6 +53,8 @@ public class personalchatroomui extends clintsocket {
     public ArrayList<String> Friend_list = new ArrayList<String>();
     static int logout;
     public boolean clintnamebuttton_clicked = false, flag, button_createfalg = true, isfile = false;
+
+    chathistory history_chats = new chathistory();
 
     //frame  and global images
     JFrame frame = new JFrame();
@@ -228,7 +231,7 @@ public class personalchatroomui extends clintsocket {
         file_chooser = new JFileChooser();
 
         Image filebackground = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/ui/filelogo.png"));
-        Image filebackgroundscaled = filebackground.getScaledInstance(75, 75, Image.SCALE_SMOOTH); //image resizer jonno
+        Image filebackgroundscaled = filebackground.getScaledInstance(65, 65, Image.SCALE_SMOOTH); //image resizer jonno
         ImageIcon filelogo = new ImageIcon(filebackgroundscaled);
         filebutton = new JButton(filelogo);
         filebutton.setBackground(new Color(28, 73, 102));
@@ -400,6 +403,22 @@ public class personalchatroomui extends clintsocket {
                                     clintthread clintthreadclass = new clintthread(clintname, clintnumber, friend_flag);
                                     clint_listofclintthreadclass.add(clintthreadclass);
 
+                                    //checks for history of the frinds chat
+                                    boolean exists;
+                                    exists = history_chats.chatfileavailability("Chat history" + clintname + ".txt");
+
+                                    //if the friends chat list is available gets the chat from the history
+                                    if (exists == true) {
+                                        String chats;
+                                        chats = history_chats.getting_chatHIdtory("Chat history" + clintname + ".txt");
+                                        for (clintthread clint : clint_listofclintthreadclass) {
+                                            if (clint.number ==clintnumber) {
+                                                clint.msgelist.add(chats);
+                                            }
+                                        }
+
+                                    }
+
                                     JButton button = new JButton(clintname);
                                     frame.setVisible(false);//refresh starts 
                                     button.setSize(800, 800);
@@ -536,9 +555,9 @@ public class personalchatroomui extends clintsocket {
                                             friend_name = clint.name;
                                         }
                                     }
-//                                    //creates file for friend to hold shared file
-//                                    File friend_filepath = new File("E:\\" + friend_name);
-//                                    friend_filepath.mkdir();
+
+                                    //creates chat history file for the new friend
+                                    history_chats.createHistoryFile("Chat history" + friend_name + ".txt");
 
                                     FileOfFriendLsit(friend_name);
                                     if (friendrequestnumber == current_clintnumber) {
@@ -565,9 +584,8 @@ public class personalchatroomui extends clintsocket {
                                         friend_name = clint.name;
                                     }
                                 }
-//                                //creates new folder for  the friend to hold incoming file
-//                                File friend_filepath = new File("E:\\" + friend_name);
-//                                friend_filepath.mkdir();
+                                //creates chat history file for the new friend
+                                history_chats.createHistoryFile("Chat history" + friend_name + ".txt");
 
                                 FileOfFriendLsit(friend_name);//this method add new frind name to the friend list file
                                 frame.setVisible(false);
@@ -598,11 +616,13 @@ public class personalchatroomui extends clintsocket {
                                 //if the person chathead is on
                                 if (personwhosent_number == current_clintnumber) {
                                     //setting msg to chatbox 
-                                    allmsgtextpane.setText(allmsgtextpane.getText().trim() + "\n" + nameclint + " : " + actualmsg);
+                                    allmsgtextpane.setText(allmsgtextpane.getText().trim() + "\n(" + nameclint +"):------->"+ actualmsg);
 
                                 }
+                                //saves msg in history
+                                history_chats.WriteHistory("Chat history" + personwhosent_name + ".txt","("+personwhosent_name + ")------->" + actualmsg);
                                 for (clintthread clint : clint_listofclintthreadclass) {
-                                    if (clint.number == current_clintnumber) {
+                                    if (clint.number == personwhosent_number) {
                                         clint.msgelist.add(personwhosent_name + ": " + actualmsg);
                                     }
                                 }
@@ -619,80 +639,110 @@ public class personalchatroomui extends clintsocket {
 
                 }
             }
-        });
+        }
+        );
         //starting msg or clint name recieve thread
         readMessage.start();
 
-        sendbutton.addActionListener(new ActionListener() {
+        sendbutton.addActionListener(
+                new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e
+            ) {
                 //getting msg from textpane
                 msg = usermsgtextpane.getText();
-                if (msg.equals("") == false) {
+                if (msg.equals("") == false ) {
                     try {
+                        if(!msg.contains("%c@") && !msg.contains(",_(:);)(") && !msg.contains("&&&&&&&&") && !msg.endsWith("^^^^^^^^") && !msg.endsWith("~%~~")){
                         sendingstream.writeUTF(msg + "#" + current_clintnumber);
-                        allmsgtextpane.setText(allmsgtextpane.getText().trim() + "\n" + name + " : " + msg);
+                        allmsgtextpane.setText(allmsgtextpane.getText().trim() + "\n" +msg+ " <------:("+ name+")");
                         usermsgtextpane.setText(null);
+                        
+                        //saves msh in history
+                         history_chats.WriteHistory("Chat history" +nameclint+ ".txt",msg+" <------:("+ name+")");
 
                         //sendingstream.writeUTF(msg);
                         //System.out.println(nameclint+"lol");
+                        }else{
+                          JOptionPane.showMessageDialog(null,"Sorry! some combinations of signs in this msg are not allowed to be paased for functional reason"); 
+                          usermsgtextpane.setText(null);
+                        }
                     } catch (Exception ex) {
                         System.out.println("personalchatroomui sendbutton" + ex);
                     }
                 }
             }
-        });
+        }
+        );
 
-        logout_button.addActionListener(new ActionListener() {
+        logout_button.addActionListener(
+                new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e
+            ) {
                 loggingout();
             }
-        });
+        }
+        );
 
-        picturebutton.addActionListener(new ActionListener() {
+        picturebutton.addActionListener(
+                new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e
+            ) {
                 picture_selection();
             }
-        });
+        }
+        );
 
-        filebutton.addActionListener(new ActionListener() {
+        filebutton.addActionListener(
+                new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e
+            ) {
                 file_selection();
             }
-        });
+        }
+        );
 
-        shareditemmenu_button.addActionListener(new ActionListener() {
+        shareditemmenu_button.addActionListener(
+                new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e
+            ) {
                 FileShow show = new FileShow("E:\\" + name + "\\");
                 show.display();
             }
-        });
+        }
+        );
 
-        gamingzonebutton.addActionListener(new ActionListener() {
+        gamingzonebutton.addActionListener(
+                new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e
+            ) {
                 TictacMainFrame titocgame = new TictacMainFrame();
 
             }
-        });
+        }
+        );
 
-        dictionary_Button.addActionListener(new ActionListener() {
+        dictionary_Button.addActionListener(
+                new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e
+            ) {
                 DictionaryMainFrame dictionary = new DictionaryMainFrame();
             }
-        });
+        }
+        );
 
     }
 

@@ -74,7 +74,7 @@ public class WordSearch extends JFrame{
         //For Test only
         setVisible(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        add(c);
+//        add(c);
         setSize(500,200);
     }
     /*

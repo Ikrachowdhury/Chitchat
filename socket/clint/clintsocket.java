@@ -35,7 +35,7 @@ public class clintsocket {
 
             ip = InetAddress.getLocalHost();
             socket = new Socket(ip, ServerPort);
-            //socket = new Socket("192.168.0.104", ServerPort);
+            //socket = new Socket("192.168.0.103", ServerPort);
             sendingstream = new DataOutputStream(socket.getOutputStream());
             recievingstream = new DataInputStream(socket.getInputStream());
             System.out.println(ip);
