@@ -27,7 +27,7 @@ import javax.swing.border.EmptyBorder;
 public class loginwindow extends JFrame {
 
     private JPanel jpanel1, jpanel2;
-    private JLabel usernamelabel, passwordlabel, loginlabel, newherelabel, backgroundlabel, welcomelabel2, welcomelabel3, welcomelabel1;
+    private JLabel usernamelabel, passwordlabel, loginlabel, newherelabel, backgroundlabel ,welcomelabel1;
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JButton submitButton, createButton;
@@ -113,9 +113,7 @@ public class loginwindow extends JFrame {
         //<<<<<<<<<<<<<<<<<<<<<<<<<layout of jpanel login sight
         jpanel1.setLayout(new GridBagLayout());
         GridBagConstraints gridbagconstrain = new GridBagConstraints();
-//         gridbagconstrain.ipadx=0;
-//         gridbagconstrain.ipady=30;
-        
+ 
         jpanel1.setBackground(new Color(28, 73, 102));//new Color(int,int,int) -rgb new mix color hoi
         
         
@@ -138,7 +136,7 @@ public class loginwindow extends JFrame {
         usernamelabel.setFont(fieldfont2);
         usernamelabel.setText("Username");
         usernamelabel.setForeground(Color.WHITE);
-        //usernamelabel.setFont(font);
+ 
         jpanel1.add(usernamelabel, gridbagconstrain);
 
         gridbagconstrain.gridy = 1;
@@ -148,6 +146,7 @@ public class loginwindow extends JFrame {
         gridbagconstrain.insets = new Insets(50, 15, 20, 50);
         gridbagconstrain.ipadx=10;
         gridbagconstrain.ipady=10;
+        
         jpanel1.add(usernameField, gridbagconstrain);
 
         gridbagconstrain.gridy = 2;
@@ -159,7 +158,7 @@ public class loginwindow extends JFrame {
         passwordlabel.setFont(fieldfont2);
         passwordlabel.setText("Password");
         passwordlabel.setForeground(Color.WHITE);
-        //usernamelabel.setFont(font);
+ 
         jpanel1.add(passwordlabel, gridbagconstrain);
 
         gridbagconstrain.gridy = 2;
@@ -199,6 +198,7 @@ public class loginwindow extends JFrame {
         GridBagConstraints gridbagconstrain3 = new GridBagConstraints();
         
         jpanel2.setBackground(new Color(237, 234, 222));
+        
         gridbagconstrain3.gridy = 0;
         gridbagconstrain3.gridwidth = 3;
         backgroundlabel = new JLabel();
@@ -215,22 +215,7 @@ public class loginwindow extends JFrame {
         welcomelabel1.setFont(new Font(Font.SERIF, Font.BOLD, 60));
         gridbagconstrain3.insets = new Insets(0, 0,20, 0);
         jpanel2.add(welcomelabel1, gridbagconstrain3);
-
-//        gridbagconstrain3.gridy = 2;
-//        gridbagconstrain3.gridwidth = 3;
-//        welcomelabel2 = new JLabel("To keep conected to lab friends please login with your password and id");
-//        welcomelabel2.setForeground(new Color(28, 73, 102));
-//        welcomelabel2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
-//        gridbagconstrain3.insets = new Insets(0, 0, 10, 0);
-//        jpanel2.add(welcomelabel2, gridbagconstrain3);
-//
-//        gridbagconstrain3.gridy = 3;
-//        gridbagconstrain3.gridwidth = 3;
-//        welcomelabel3 = new JLabel("with your password and id");
-//        welcomelabel3.setForeground(new Color(16, 82, 8));
-//        welcomelabel3.setFont(new Font(Font.SERIF, Font.BOLD, 20));
-//        gridbagconstrain3.insets = new Insets(0, 0, 100, 0);
-//        jpanel2.add(welcomelabel3, gridbagconstrain3);
+ 
 
         createButton.addActionListener(new ActionListener() {
             @Override

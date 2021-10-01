@@ -36,7 +36,7 @@ public class ObjectFileCreate {
         try {
             file.createNewFile();
         } catch (IOException ex) {
-            Logger.getLogger(dpchooser.class.getName()).log(Level.SEVERE, null, ex);
+           
         }
         if (file.exists()) {
             try {

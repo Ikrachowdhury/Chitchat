@@ -14,8 +14,8 @@ import javax.swing.border.EmptyBorder;
 
 public class createaccountWindow extends JFrame {
 
-    private JPanel jpanel1;
-    private JLabel usernamelabel, nicknamelabel, passwordlabel, emaillabel,welcomelabel;
+    private JPanel jpanel1,jpanel2;
+    private JLabel usernamelabel, nicknamelabel, passwordlabel, emaillabel,logolabel,welcomelabel1,informationlabel;
     JTextField usernameField;
     JTextField nickField;
     JPasswordField passwordField;
@@ -35,25 +35,39 @@ public class createaccountWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(500, 80, 1250, 850);
         setResizable(true);
+        setExtendedState(JFrame.MAXIMIZED_BOTH); 
         Image icon = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/ui/iconlogo.png"));
         setIconImage(icon);
+   
 
     }
 
     public void framekeycreatewindow() {
-
+ 
         jpanel1 = new JPanel();
-
-        setResizable(false);
+        jpanel2 = new JPanel();
+ 
         //design
-
-//        Image img = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/ui/signupbackground.png"));
-//        this.setContentPane(new JLabel(new ImageIcon(img)));
-// 
+ 
         Font fieldfont = new Font("Arial", Font.BOLD, 20);
-
-        //Border thickBorder = new LineBorder(Color.white, 5);
+ 
         //create components
+        //components of jpanel2
+        Image backgroundlogo = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/ui/signUPlogo.png"));
+        Image logoscaled = backgroundlogo.getScaledInstance(500, 500, Image.SCALE_SMOOTH); //image resizer jonno
+        ImageIcon logo = new ImageIcon(logoscaled);
+        
+        logolabel=new JLabel();
+        logolabel.setIcon(logo);
+        
+        //components of jpanel1
+        
+        informationlabel=new JLabel();
+        informationlabel.setText("Fill up the Form");
+        informationlabel.setFont(new Font(Font.SERIF, Font.BOLD, 40));
+        informationlabel.setForeground(Color.WHITE);
+        
+        
         usernameField = new JTextField();
         usernameField.setFont(fieldfont);
         usernameField.setBackground(Color.white);
@@ -85,7 +99,6 @@ public class createaccountWindow extends JFrame {
         emailfield.setFont(fieldfont);
         emailfield.setBackground(Color.white);
         emailfield.setForeground(Color.black);
-        //picturefield.setColumns(15);
         emailfield.setBorder(BorderFactory.createCompoundBorder(
                 new CustomeBorder(), new EmptyBorder(new Insets(10, 10, 10, 10)
                 )));
@@ -99,28 +112,41 @@ public class createaccountWindow extends JFrame {
                 )));
 
         //layout of jrrame
+ 
         this.setLayout(new GridBagLayout());
-        GridBagConstraints gridbagconstrain1 = new GridBagConstraints();
-        gridbagconstrain1.weightx = 1;
-        gridbagconstrain1.weighty = 1;
+        GridBagConstraints gridbagconstrain2 = new GridBagConstraints();
+        gridbagconstrain2.weightx=1;
+        gridbagconstrain2.weighty=1;
+        
+         gridbagconstrain2.ipadx=1000;
+         gridbagconstrain2.ipady=1000;
+          
 
-        gridbagconstrain1.ipadx = 500;
-        gridbagconstrain1.ipady = 500;
+        gridbagconstrain2.gridx = 0;
+        gridbagconstrain2.gridwidth = 1;
+        this.add(jpanel2, gridbagconstrain2);
 
-        gridbagconstrain1.insets = new Insets(100, 0, 100, 0);
-        this.add(jpanel1, gridbagconstrain1);
+        gridbagconstrain2.gridx = 1;
+        gridbagconstrain2.gridwidth = 1;
+       // gridbagconstrain2.insets = new Insets(0,0, 0, 0);
+        this.add(jpanel1, gridbagconstrain2);
 
         //layout of jpanel1 
         jpanel1.setLayout(new GridBagLayout());
         GridBagConstraints gridbagconstrain = new GridBagConstraints();
         jpanel1.setBackground(new Color(28, 73, 102));
 
-        gridbagconstrain.ipadx = 50;
+        gridbagconstrain.ipadx = 100;
         gridbagconstrain.ipady = 15;
- 
-        
         
         gridbagconstrain.gridy = 0;
+        gridbagconstrain.gridwidth =3;
+        gridbagconstrain.fill = GridBagConstraints.CENTER;
+        gridbagconstrain.insets = new Insets(30,250, 10, 10);
+        jpanel1.add(informationlabel, gridbagconstrain);
+ 
+         
+        gridbagconstrain.gridy = 1;
         gridbagconstrain.gridwidth = 1;
         gridbagconstrain.fill = GridBagConstraints.BOTH;
         gridbagconstrain.insets = new Insets(30, 10, 10, 10);
@@ -128,16 +154,15 @@ public class createaccountWindow extends JFrame {
         usernamelabel.setFont(new Font(Font.SERIF, Font.BOLD, 20));
         usernamelabel.setText("Username");
         usernamelabel.setForeground(Color.WHITE);
-        //usernamelabel.setFont(font);
         jpanel1.add(usernamelabel, gridbagconstrain);
 
-        gridbagconstrain.gridy = 0;
+        gridbagconstrain.gridy = 1;
         gridbagconstrain.gridwidth = 3;
         gridbagconstrain.fill = GridBagConstraints.BOTH;
         gridbagconstrain.insets = new Insets(30, 10, 10, 10);
         jpanel1.add(usernameField, gridbagconstrain);
 
-        gridbagconstrain.gridy = 1;
+        gridbagconstrain.gridy = 2;
         gridbagconstrain.gridwidth = 1;
         gridbagconstrain.fill = GridBagConstraints.BOTH;
         gridbagconstrain.insets = new Insets(10, 10, 10, 10);
@@ -145,16 +170,15 @@ public class createaccountWindow extends JFrame {
         nicknamelabel.setFont(new Font(Font.SERIF, Font.BOLD, 20));
         nicknamelabel.setText("Nickname");
         nicknamelabel.setForeground(Color.WHITE);
-        //usernamelabel.setFont(font);
         jpanel1.add(nicknamelabel, gridbagconstrain);
 
-        gridbagconstrain.gridy = 1;
+        gridbagconstrain.gridy = 2;
         gridbagconstrain.gridwidth = 3;
         gridbagconstrain.fill = GridBagConstraints.BOTH;
         gridbagconstrain.insets = new Insets(5, 10, 10, 10);
         jpanel1.add(nickField, gridbagconstrain);
 
-        gridbagconstrain.gridy = 2;
+        gridbagconstrain.gridy = 3;
         gridbagconstrain.gridwidth = 1;
         gridbagconstrain.fill = GridBagConstraints.BOTH;
         gridbagconstrain.insets = new Insets(10, 10, 10, 10);
@@ -162,18 +186,16 @@ public class createaccountWindow extends JFrame {
         passwordlabel.setFont(new Font(Font.SERIF, Font.BOLD, 20));
         passwordlabel.setText("Password");
         passwordlabel.setForeground(Color.WHITE);
-        //usernamelabel.setFont(font);
         jpanel1.add(passwordlabel, gridbagconstrain);
 
-        gridbagconstrain.gridy = 2;
+        gridbagconstrain.gridy = 3;
         gridbagconstrain.gridwidth = 3;
         gridbagconstrain.fill = GridBagConstraints.BOTH;
         gridbagconstrain.insets = new Insets(5, 10, 10, 10);
         jpanel1.add(passwordField, gridbagconstrain);
 
-        gridbagconstrain.gridy = 3;
-        gridbagconstrain.gridwidth = 1;
-        //gridbagconstrain.fill = GridBagConstraints.BOTH;
+        gridbagconstrain.gridy = 4;
+        gridbagconstrain.gridwidth = 1; 
         gridbagconstrain.insets = new Insets(10, 10, 10, 10);
         emaillabel = new JLabel();
         emaillabel.setFont(new Font(Font.SERIF, Font.BOLD, 20));
@@ -181,17 +203,37 @@ public class createaccountWindow extends JFrame {
         emaillabel.setForeground(Color.WHITE);
         jpanel1.add(emaillabel, gridbagconstrain);
 
-        gridbagconstrain.gridy = 3;
+        gridbagconstrain.gridy = 4;
         gridbagconstrain.gridwidth = 3;
         gridbagconstrain.fill = GridBagConstraints.BOTH;
         gridbagconstrain.insets = new Insets(5, 10, 0, 10);
         jpanel1.add(emailfield, gridbagconstrain);
 
-        gridbagconstrain.gridy = 4;
+        gridbagconstrain.gridy = 5;
         gridbagconstrain.gridwidth = 4;
         gridbagconstrain.fill = GridBagConstraints.CENTER;
         gridbagconstrain.insets = new Insets(5, 150, 30, 10);
         jpanel1.add(submitButton, gridbagconstrain);
+        
+        
+        //layout of jpanel2
+        jpanel2.setLayout(new GridBagLayout());
+        GridBagConstraints gridbagconstrain3 = new GridBagConstraints();
+        
+        jpanel2.setBackground(new Color(237, 234, 222));
+        
+        gridbagconstrain3.gridy = 0;
+        gridbagconstrain3.gridwidth = 3; 
+        gridbagconstrain3.insets = new Insets(0, 0,40, 0);
+        jpanel2.add(logolabel, gridbagconstrain3);
+
+        gridbagconstrain3.gridy = 1;
+        gridbagconstrain3.gridwidth = 3;
+        welcomelabel1 = new JLabel("WElcome to SignUP page");
+        welcomelabel1.setForeground(new Color(28, 73, 102));
+        welcomelabel1.setFont(new Font(Font.SERIF, Font.BOLD, 60));
+        gridbagconstrain3.insets = new Insets(0, 0,20, 0);
+        jpanel2.add(welcomelabel1, gridbagconstrain3);
 
         submitButton.addActionListener(new ActionListener() {
             @Override
@@ -200,8 +242,7 @@ public class createaccountWindow extends JFrame {
                 if (usernameField.getText().equalsIgnoreCase("") || nickField.getText().equalsIgnoreCase("") || passwordField.getText().equalsIgnoreCase("") || emailfield.getText().equalsIgnoreCase("")) {
                     JOptionPane.showMessageDialog(jpanel1, "Fill all the information");
                 } else {
-                    //JOptionPane.showMessageDialog(jpanel1 ,"Thanx for signing up"); 
-                    // setVisible(false); 
+                     
                     boolean available = aaccounts.checkAvaiability(usernameField.getText());
 
                     if (available == false) {
@@ -218,29 +259,13 @@ public class createaccountWindow extends JFrame {
                         f.mkdir();
 
                         loginPage = new loginwindow();
-                        //dpl= new dpchooser(newUser,filename,name) ;  //this dpchooser class select dp and also creates a final users object file
+                       
 
                     }
                 }
             }
         });
-
-        /*  imagebutton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               
-             imagechooser.setFileFilter(new FileNameExtensionFilter("Open Image","jpg","png","jpeg"));
-             int returnVal =imagechooser .showOpenDialog(rootPane);
-             if(returnVal==JFileChooser .APPROVE_OPTION){
-                 File file=imagechooser.getSelectedFile();
-                 Image  displaypicture =  Toolkit.getDefaultToolkit().getImage( file.getAbsolutePath()); 
-                 Image  displaypicturescaled= displaypicture.getScaledInstance(150,85,Image.SCALE_SMOOTH); 
-                 ImageIcon  dp= new ImageIcon( displaypicturescaled);
-                  
-                 picturetextpane.insertIcon( dp);
-             }
-            }
-        });*/
+ 
     }
 
 //design of the borders 
