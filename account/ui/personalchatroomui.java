@@ -179,7 +179,7 @@ public class personalchatroomui extends clintsocket {
         connectedfriendsscrollpane = new JScrollPane(jpanel301);
         connectedfriendsscrollpane.setPreferredSize(new Dimension(150, 400));
 
-        gamingzonebutton = new JButton("TicTocTOy");
+        gamingzonebutton = new JButton("TicTocTOe");
         gamingzonebutton.setFont(new Font(Font.SERIF, Font.BOLD, 30));
         gamingzonebutton.setForeground(Color.white);
         gamingzonebutton.setBackground(new Color(28, 73, 102));

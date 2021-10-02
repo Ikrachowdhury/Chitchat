@@ -259,7 +259,7 @@ public class createaccountWindow extends JFrame {
                         objectCreate = new ObjectFileCreate(newUser, filename, name);
                         File f = new File("E:\\" + usernameField.getText() + " " + nickField.getText());
                         f.mkdir();
-
+                        setVisible(false);
                         loginPage = new loginwindow();
 
                     }
