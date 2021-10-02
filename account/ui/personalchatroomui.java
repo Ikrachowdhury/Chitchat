@@ -383,12 +383,12 @@ public class personalchatroomui extends clintsocket {
 
                                     //checks for history of the frinds chat
                                     boolean exists;
-                                    exists = history_chats.chatfileavailability("Chat history" + clintname + ".txt");
+                                    exists = history_chats.chatfileavailability("Chat of" + clintname+name + ".txt");
 
                                     //if the friends chat list is available gets the chat from the history
                                     if (exists == true) {
                                         String chats;
-                                        chats = history_chats.getting_chatHIdtory("Chat history" + clintname + ".txt");
+                                        chats = history_chats.getting_chatHIdtory("Chat of" + clintname+name + ".txt");
                                         for (clintthread clint : clint_listofclintthreadclass) {
                                             if (clint.number == clintnumber) {
                                                 clint.msgelist.add(chats);
@@ -539,7 +539,7 @@ public class personalchatroomui extends clintsocket {
                                     }
 
                                     //creates chat history file for the new friend
-                                    history_chats.createHistoryFile("Chat history" + friend_name + ".txt");
+                                    history_chats.createHistoryFile("Chat of" + friend_name+name + ".txt");
 
                                     FileOfFriendLsit(friend_name);
                                     if (friendrequestnumber == current_clintnumber) {
@@ -567,7 +567,7 @@ public class personalchatroomui extends clintsocket {
                                     }
                                 }
                                 //creates chat history file for the new friend
-                                history_chats.createHistoryFile("Chat history" + friend_name + ".txt");
+                                history_chats.createHistoryFile("Chat of" + friend_name+name + ".txt");
 
                                 FileOfFriendLsit(friend_name);//this method add new frind name to the friend list file
                                 frame.setVisible(false);
@@ -602,7 +602,7 @@ public class personalchatroomui extends clintsocket {
 
                                 }
                                 //saves msg in history
-                                history_chats.WriteHistory("Chat history" + personwhosent_name + ".txt", "(" + personwhosent_name + ")------->" + actualmsg);
+                                history_chats.WriteHistory("Chat of" +personwhosent_name+name + ".txt", "(" + personwhosent_name + ")------->" + actualmsg);
                                 for (clintthread clint : clint_listofclintthreadclass) {
                                     if (clint.number == personwhosent_number) {
                                         clint.msgelist.add(personwhosent_name + ": " + actualmsg);
@@ -642,7 +642,7 @@ public class personalchatroomui extends clintsocket {
                             usermsgtextpane.setText(null);
 
                             //saves msh in history
-                            history_chats.WriteHistory("Chat history" + nameclint + ".txt", msg + " <------:(" + name + ")");
+                            history_chats.WriteHistory("Chat of" +nameclint+name + ".txt", msg + " <------:(" + name + ")");
 
                             //sendingstream.writeUTF(msg);
                             //System.out.println(nameclint+"lol");
@@ -892,7 +892,7 @@ public class personalchatroomui extends clintsocket {
     //select specific file from files
     public void file_selection() {
         try {
-            file_chooser.setFileFilter(new FileNameExtensionFilter("Files", "txt", "TXT", "doc", "docx"));
+            file_chooser.setFileFilter(new FileNameExtensionFilter("Files", "txt", "TXT", "doc", "docx","pptx"));
             int returnVal = file_chooser.showOpenDialog(allmsgtextpane);
 
             if (returnVal == JFileChooser.APPROVE_OPTION) {

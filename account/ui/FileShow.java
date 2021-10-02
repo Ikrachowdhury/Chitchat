@@ -61,7 +61,7 @@ public class FileShow extends JFrame implements ActionListener {
 
         for (final String list : fileNames) {
 
-            if (list.endsWith(".txt") || list.endsWith(".TXT") || list.endsWith(".docx") || list.endsWith(".doc")) {
+            if (list.endsWith(".txt") || list.endsWith(".TXT") || list.endsWith(".docx") || list.endsWith(".doc") || list.endsWith(".pptx")) {
                 doc_list = new JMenuItem(list);
                 doc_list.setPreferredSize(new Dimension(250, 70));
                 doc_list.addActionListener(this);

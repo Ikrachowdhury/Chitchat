@@ -1,2 +1,2 @@
-ns nowkshi ns asd@jk.com
-ns ikra chowdhury nowkshi@gmail.com
+ns Ikra chowdhury nowshadparvin@gmail.com
+rintu koli pal rintu@gamil.com
