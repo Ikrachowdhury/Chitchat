@@ -367,15 +367,15 @@ public class personalchatroomui extends clintsocket {
 
                                 //this part is for checking if the incoming clint is already frind or not 
                                 //if friend it makes friend flag true and clint is added to clint_listofclintthreadclass 
-                                boolean friend_flag = false;
+                                boolean friend_flag=false;
                                 if (clintname != null) {
-                                    for (String friend : Friend_list) {
+                                    for (String friend : Friend_list) {                                      
                                         if (friend.equals(clintname)) {
                                             friend_flag = true;
-                                        } else {
-                                            friend_flag = false;
-                                        }
+                                            break;                                             
+                                        }  
                                     }
+                                    
 
                                     // calling thread class for clint && creating object for thread to handle each clint msg
                                     clintthread clintthreadclass = new clintthread(clintname, clintnumber, friend_flag);
@@ -422,6 +422,7 @@ public class personalchatroomui extends clintsocket {
                                                     current_clintnumber = clint.number;
                                                     getclintnumber(current_clintnumber);
                                                     flag = clint.friend;//checks if the clicked clint is friend or not
+                                                    System.out.println(flag);
                                                     //flag is used later for providing friends special option(showing button)
                                                     //or providing friend req option
                                                 }
@@ -828,6 +829,7 @@ public class personalchatroomui extends clintsocket {
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
                     Friend_list.add(line);
+                     
                 }
                 fileReader.close();
 

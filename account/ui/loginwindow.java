@@ -236,6 +236,7 @@ public class loginwindow extends JFrame {
 
                 if (exist != false) {
                     File filepath = new File(usernameField.getText() + ".txt");
+                    if(filepath.exists()){
                     objectread user = new objectread(filepath.getAbsolutePath());
                     personalchatroomui userchatroom = new personalchatroomui(user.username + " " + user.nickname, filepath);
                     //Sharefilechatroomui userchatroom=new Sharefilechatroomui( user.dp,user.username+" "+user.nickname,filepath );
@@ -243,6 +244,10 @@ public class loginwindow extends JFrame {
                     setVisible(false);
                     //clintsocket clint=new clintsocket(usernameField.getText(),filepath); 
                     //serversocket serve=new serversocket(null);
+                    }else{
+                        JOptionPane.showMessageDialog(jpanel1, "This account doesnot exits!Please create new account with no space in username"); 
+                    }
+                    
 
                 } else {
                     JOptionPane.showMessageDialog(jpanel1, "Incorrect username or password.");

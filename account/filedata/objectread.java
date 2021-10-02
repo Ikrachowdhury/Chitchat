@@ -1,6 +1,7 @@
 package filedata;
 
 import User.userstructure;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.net.InetAddress;
@@ -9,7 +10,7 @@ import javax.swing.ImageIcon;
 public class objectread {
 
     public String filename, username, nickname, email;
-    userstructure user; 
+    userstructure user;
     InetAddress inetAddress;
 
     public objectread(String filename) {
@@ -21,10 +22,13 @@ public class objectread {
 
     public userstructure readobjectuser() {
         try {
-            FileInputStream file = new FileInputStream(filename);
-            ObjectInputStream objectread = new ObjectInputStream(file);
-            user = (userstructure) objectread.readObject();
-            objectread.close();
+            File f = new File(filename);
+            FileInputStream file = new FileInputStream(f);
+            if (f.exists()) {
+                ObjectInputStream objectread = new ObjectInputStream(file);
+                user = (userstructure) objectread.readObject();
+                objectread.close();
+            } 
         } catch (Exception e) {
             System.out.println(e);
         }
