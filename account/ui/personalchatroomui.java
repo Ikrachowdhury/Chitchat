@@ -8,6 +8,7 @@ import static clint.clintsocket.sendingstream;
 import clint.clintthread;
 import javax.swing.*;
 import java.awt.*;
+import static java.awt.Component.CENTER_ALIGNMENT;
 import java.io.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.StringTokenizer;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static javafx.application.Platform.exit;
 import javax.swing.border.AbstractBorder;
 import javax.swing.border.EmptyBorder;
@@ -28,7 +31,7 @@ import javax.swing.text.StyleConstants;
 public class personalchatroomui extends clintsocket {
     //frame elements
 
-    private JPanel jpanel1, jpanel2, jpanel3, jpanel301, jpanel201;
+    private JPanel jpanel1, jpanel2, jpanel301;
     private JLabel logolabel, connectedfriendslabel, clintnamelabel;
     private JButton gamingzonebutton, filebutton, picturebutton, sendbutton, logout_button, friendship_statusbutton, shareditemmenu_button, dictionary_Button;
     private JScrollPane allmsgscrollpane, usermsgscrollpane, connectedfriendsscrollpane;
@@ -51,7 +54,7 @@ public class personalchatroomui extends clintsocket {
     //public clintthread threadclass; //which will be created with clint name
     public static Vector<clintthread> clint_listofclintthreadclass = new Vector<>();
     public ArrayList<String> Friend_list = new ArrayList<String>();
-    static int logout;
+    boolean logout;
     public boolean clintnamebuttton_clicked = false, flag, button_createfalg = true, isfile = false;
 
     chathistory history_chats = new chathistory();
@@ -92,7 +95,7 @@ public class personalchatroomui extends clintsocket {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                loggingout();
+               loggingout();
             }
         });
 
@@ -134,7 +137,7 @@ public class personalchatroomui extends clintsocket {
     //frame key elements and socket work 
     public void framekeypersonalchatroom() {
 
-        logout = 0;
+        logout =false;
         frame.getContentPane().setBackground(Color.BLACK);
 
         jpanel1 = new JPanel();
@@ -142,13 +145,11 @@ public class personalchatroomui extends clintsocket {
         jpanel2 = new JPanel();
 
         jpanel2.setBackground(Color.WHITE);
-        jpanel201 = new JPanel();
-        jpanel201.setBackground(Color.WHITE);
-        jpanel201.setLayout(new FlowLayout(FlowLayout.LEFT));
+ 
 
-        jpanel3 = new JPanel();
         jpanel301 = new JPanel();
-        jpanel301.setLayout(new BoxLayout(jpanel301, BoxLayout.PAGE_AXIS));
+        BoxLayout box = new BoxLayout(jpanel301, BoxLayout.PAGE_AXIS);
+        jpanel301.setLayout(box);
 
         //create components 
         //jpanel1 component      
@@ -176,7 +177,7 @@ public class personalchatroomui extends clintsocket {
         connectedfriendslabel.setForeground(new Color(28, 73, 102));
 
         connectedfriendsscrollpane = new JScrollPane(jpanel301);
-        connectedfriendsscrollpane.setPreferredSize(new Dimension(200, 300));
+        connectedfriendsscrollpane.setPreferredSize(new Dimension(150, 400));
 
         gamingzonebutton = new JButton("TicTocTOy");
         gamingzonebutton.setFont(new Font(Font.SERIF, Font.BOLD, 30));
@@ -209,7 +210,7 @@ public class personalchatroomui extends clintsocket {
         usermsgscrollpane = new JScrollPane(usermsgtextpane);
         usermsgscrollpane.setPreferredSize(new Dimension(300, 30));
 
-        //send nutton background image
+        //send buutton background image
         Image sendbackground = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/ui/sendlogo.png"));
         Image sendbackgroundscaled = sendbackground.getScaledInstance(50, 50, Image.SCALE_SMOOTH); //image resizer jonno
         ImageIcon sendlogo = new ImageIcon(sendbackgroundscaled);
@@ -218,7 +219,7 @@ public class personalchatroomui extends clintsocket {
         sendbutton.setBorder(BorderFactory.createCompoundBorder(
                 new CustomeBorder(), new EmptyBorder(new Insets(10, 10, 10, 10)
                 )));
-
+        //image buutton background image
         Image picturebackground = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/ui/picturelogo.png"));
         Image picturebackgroundscaled = picturebackground.getScaledInstance(75, 75, Image.SCALE_SMOOTH); //image resizer jonno
         ImageIcon picturelogo = new ImageIcon(picturebackgroundscaled);
@@ -230,6 +231,7 @@ public class personalchatroomui extends clintsocket {
         Picture_Chooser = new JFileChooser();
         file_chooser = new JFileChooser();
 
+        //file buutton background image
         Image filebackground = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/ui/filelogo.png"));
         Image filebackgroundscaled = filebackground.getScaledInstance(65, 65, Image.SCALE_SMOOTH); //image resizer jonno
         ImageIcon filelogo = new ImageIcon(filebackgroundscaled);
@@ -243,13 +245,10 @@ public class personalchatroomui extends clintsocket {
         jpanel1.setLayout(new GridBagLayout());
         GridBagConstraints gridbagconstrain1 = new GridBagConstraints();
         jpanel1.setBackground(new Color(237, 234, 222));
-        gridbagconstrain1.ipadx = 300;
+        gridbagconstrain1.ipadx =300;
 
         gridbagconstrain1.gridy = 1;
-        //gridbagconstrain1.gridx = 1;
         gridbagconstrain1.ipady = 20;
-        gridbagconstrain1.gridwidth = 1;
-        gridbagconstrain1.fill = GridBagConstraints.CENTER;
         gridbagconstrain1.insets = new Insets(0, 0, 5, 0);
 
         jpanel1.add(logolabel, gridbagconstrain1);
@@ -262,50 +261,33 @@ public class personalchatroomui extends clintsocket {
 //
 //        jpanel1.add(namelabel, gridbagconstrain1);
         gridbagconstrain1.gridy = 2;
-        //gridbagconstrain1.gridx = 1; 
-        gridbagconstrain1.gridwidth = 1;
         gridbagconstrain1.insets = new Insets(0, 0, 0, 0);
 
         jpanel1.add(connectedfriendslabel, gridbagconstrain1);
 
-        gridbagconstrain1.gridy = 3;
-        //gridbagconstrain1.gridx = 2; 
-        gridbagconstrain1.gridwidth = 0;
         gridbagconstrain1.fill = GridBagConstraints.BOTH;
+        gridbagconstrain1.gridy = 3;
         gridbagconstrain1.insets = new Insets(0, 0, 0, 0);
-
+         
         jpanel1.add(connectedfriendsscrollpane, gridbagconstrain1);
 
         gridbagconstrain1.gridy = 4;
-        // gridbagconstrain1.gridx = 1;
         gridbagconstrain1.ipady = 0;
-        gridbagconstrain1.gridwidth = 1;
-        gridbagconstrain1.fill = GridBagConstraints.CENTER;
         gridbagconstrain1.insets = new Insets(5, 0, 10, 0);
 
         jpanel1.add(shareditemmenu_button, gridbagconstrain1);
 
         gridbagconstrain1.gridy = 5;
-        //gridbagconstrain1.gridx = 2; 
-        gridbagconstrain1.gridwidth = 0;
-        gridbagconstrain1.fill = GridBagConstraints.CENTER;
         gridbagconstrain1.insets = new Insets(0, 0, 0, 0);
 
         jpanel1.add(gamingzonebutton, gridbagconstrain1);
 
-        gridbagconstrain1.gridy = 6;
-        //gridbagconstrain1.gridx = 2; 
-        gridbagconstrain1.gridwidth = 0;
-        gridbagconstrain1.fill = GridBagConstraints.CENTER;
+        gridbagconstrain1.gridy = 6;        
         gridbagconstrain1.insets = new Insets(0, 0, 0, 0);
 
         jpanel1.add(dictionary_Button, gridbagconstrain1);
 
         gridbagconstrain1.gridy = 7;
-        // gridbagconstrain1.gridx = 1;
-        gridbagconstrain1.ipady = 0;
-        gridbagconstrain1.gridwidth = 1;
-        gridbagconstrain1.fill = GridBagConstraints.CENTER;
         gridbagconstrain1.insets = new Insets(0, 0, 20, 0);
 
         jpanel1.add(logout_button, gridbagconstrain1);
@@ -318,7 +300,6 @@ public class personalchatroomui extends clintsocket {
         gridbagconstrain2.ipadx = 800;
 
         gridbagconstrain2.gridy = 1;
-//        gridbagconstrain2.gridx = 1;
         gridbagconstrain2.ipady = 650;//this changes the hole hight;
         gridbagconstrain2.gridwidth = 0;
         gridbagconstrain2.fill = GridBagConstraints.BOTH;
@@ -327,7 +308,6 @@ public class personalchatroomui extends clintsocket {
         jpanel2.add(allmsgscrollpane, gridbagconstrain2);
 
         gridbagconstrain2.gridy = 2;
-//        gridbagconstrain2.gridx = 1;
         gridbagconstrain2.ipady = 30;
         gridbagconstrain2.gridwidth = 6;
         gridbagconstrain2.fill = GridBagConstraints.BOTH;
@@ -335,8 +315,7 @@ public class personalchatroomui extends clintsocket {
 
         jpanel2.add(usermsgscrollpane, gridbagconstrain2);
 
-        gridbagconstrain2.gridy = 3;
-//        gridbagconstrain2.gridx = 1;
+        gridbagconstrain2.gridy = 3; 
         gridbagconstrain2.ipadx = 0;
         gridbagconstrain2.ipady = 0;
         gridbagconstrain2.gridwidth = 1;
@@ -355,14 +334,13 @@ public class personalchatroomui extends clintsocket {
         gridbagconstrain.ipady = 1000;
 
         gridbagconstrain.gridx = 1;
-        gridbagconstrain.gridwidth = 1;
-
-        // gridbagconstrain.insets = new Insets(0, 0, 50, 20);
+        gridbagconstrain.gridwidth = 1; 
+        
         frame.add(jpanel1, gridbagconstrain);
 
         gridbagconstrain.gridx = 0;
-        gridbagconstrain.gridwidth = 1;
-        // gridbagconstrain.insets = new Insets(0, 0, 0, 40);
+        gridbagconstrain.gridwidth = 1; 
+        
         frame.add(jpanel2, gridbagconstrain);
 
         //end of frame work
@@ -374,7 +352,7 @@ public class personalchatroomui extends clintsocket {
             public void run() {
 
                 while (true) {
-                    if (logout == 0) {
+                    if (logout==false) {
                         try {
                             msg = recievingstream.readUTF();
 
@@ -412,7 +390,7 @@ public class personalchatroomui extends clintsocket {
                                         String chats;
                                         chats = history_chats.getting_chatHIdtory("Chat history" + clintname + ".txt");
                                         for (clintthread clint : clint_listofclintthreadclass) {
-                                            if (clint.number ==clintnumber) {
+                                            if (clint.number == clintnumber) {
                                                 clint.msgelist.add(chats);
                                             }
                                         }
@@ -420,8 +398,11 @@ public class personalchatroomui extends clintsocket {
                                     }
 
                                     JButton button = new JButton(clintname);
-                                    frame.setVisible(false);//refresh starts 
-                                    button.setSize(800, 800);
+                                    button.setAlignmentX(CENTER_ALIGNMENT);
+                                    button.setFont(new Font(Font.SERIF, Font.BOLD, 30));
+                                    button.setForeground(Color.white);
+                                    button.setBackground(new Color(28, 73, 102));
+                                    frame.setVisible(false);//refresh starts                                 
                                     jpanel301.add(button);
                                     frame.setVisible(true);//refresh ends
 
@@ -616,11 +597,11 @@ public class personalchatroomui extends clintsocket {
                                 //if the person chathead is on
                                 if (personwhosent_number == current_clintnumber) {
                                     //setting msg to chatbox 
-                                    allmsgtextpane.setText(allmsgtextpane.getText().trim() + "\n(" + nameclint +"):------->"+ actualmsg);
+                                    allmsgtextpane.setText(allmsgtextpane.getText().trim() + "\n(" + nameclint + "):------->" + actualmsg);
 
                                 }
                                 //saves msg in history
-                                history_chats.WriteHistory("Chat history" + personwhosent_name + ".txt","("+personwhosent_name + ")------->" + actualmsg);
+                                history_chats.WriteHistory("Chat history" + personwhosent_name + ".txt", "(" + personwhosent_name + ")------->" + actualmsg);
                                 for (clintthread clint : clint_listofclintthreadclass) {
                                     if (clint.number == personwhosent_number) {
                                         clint.msgelist.add(personwhosent_name + ": " + actualmsg);
@@ -652,21 +633,21 @@ public class personalchatroomui extends clintsocket {
             ) {
                 //getting msg from textpane
                 msg = usermsgtextpane.getText();
-                if (msg.equals("") == false ) {
+                if (msg.equals("") == false) {
                     try {
-                        if(!msg.contains("%c@") && !msg.contains(",_(:);)(") && !msg.contains("&&&&&&&&") && !msg.endsWith("^^^^^^^^") && !msg.endsWith("~%~~")){
-                        sendingstream.writeUTF(msg + "#" + current_clintnumber);
-                        allmsgtextpane.setText(allmsgtextpane.getText().trim() + "\n" +msg+ " <------:("+ name+")");
-                        usermsgtextpane.setText(null);
-                        
-                        //saves msh in history
-                         history_chats.WriteHistory("Chat history" +nameclint+ ".txt",msg+" <------:("+ name+")");
+                        if (!msg.contains("%c@") && !msg.contains(",_(:);)(") && !msg.contains("&&&&&&&&") && !msg.endsWith("^^^^^^^^") && !msg.endsWith("~%~~")) {
+                            sendingstream.writeUTF(msg + "#" + current_clintnumber);
+                            allmsgtextpane.setText(allmsgtextpane.getText().trim() + "\n" + msg + " <------:(" + name + ")");
+                            usermsgtextpane.setText(null);
 
-                        //sendingstream.writeUTF(msg);
-                        //System.out.println(nameclint+"lol");
-                        }else{
-                          JOptionPane.showMessageDialog(null,"Sorry! some combinations of signs in this msg are not allowed to be paased for functional reason"); 
-                          usermsgtextpane.setText(null);
+                            //saves msh in history
+                            history_chats.WriteHistory("Chat history" + nameclint + ".txt", msg + " <------:(" + name + ")");
+
+                            //sendingstream.writeUTF(msg);
+                            //System.out.println(nameclint+"lol");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Sorry! some combinations of signs in this msg are not allowed to be paased for functional reason");
+                            usermsgtextpane.setText(null);
                         }
                     } catch (Exception ex) {
                         System.out.println("personalchatroomui sendbutton" + ex);
@@ -682,7 +663,8 @@ public class personalchatroomui extends clintsocket {
             @Override
             public void actionPerformed(ActionEvent e
             ) {
-                loggingout();
+                 
+               loggingout();
             }
         }
         );
@@ -747,16 +729,16 @@ public class personalchatroomui extends clintsocket {
     }
 
     public void loggingout() {
-        try {
-            logout = 1;
-            sendingstream.writeUTF("logged out ,_(:);)(");
+        try {      
+            sendingstream.writeUTF("logged out ,_(:);)("); 
+            logout =true;
             System.exit(0);
 
         } catch (Exception ex) {
             System.out.println("personalchatroomui loggingout" + ex);
         }
     }
-
+   
     //shows dp and name for each clint name clicked
     public void dpandnamelabel(GridBagConstraints gridbagconstrain2, boolean flag) {
 

@@ -248,8 +248,8 @@ public class clinthandaler2 implements Runnable {
         try {
 
             logout = true;
-
-            for (clinthandaler2 clint : server.allclint_object) {
+            
+             for (clinthandaler2 clint : server.allclint_object) {
 
                 if (clint.clintnumber == clintnumber) {
 
@@ -258,13 +258,13 @@ public class clinthandaler2 implements Runnable {
                 }
             }
             for (clinthandaler2 clint : server.allclint_object) {
-
-                clint.sendingstream.writeUTF(",_(:);)( " + clintnumber);
+            
+               clint.sendingstream.writeUTF(",_(:);)( " + clintnumber);
             }
 
             server.clint_list.remove(clintnumber + "%c@" + clintname);
 
-            closingresourece();
+          //  closingresourece();
 
         } catch (IOException e) {
             System.out.println(e + " clinthandaler logged_out");

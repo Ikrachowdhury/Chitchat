@@ -41,7 +41,7 @@ public class chathistory {
 
                 }
             }
-            System.out.println(chats);
+           
         } catch (Exception e) {
             e.printStackTrace();
         }
