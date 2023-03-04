@@ -17,14 +17,10 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.StringTokenizer;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static javafx.application.Platform.exit;
+import java.util.Vector; 
 import javax.swing.border.AbstractBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.plaf.basic.BasicMenuBarUI;
+import javax.swing.filechooser.FileNameExtensionFilter; 
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 

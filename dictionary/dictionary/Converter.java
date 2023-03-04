@@ -1,5 +1,5 @@
 
-package calculator;
+package dictionary;
 
 import java.awt.Color;
 import java.awt.event.KeyAdapter;

@@ -1,0 +1,532 @@
+Project Name,Package Name,Type Name,Method Name,Implementation Smell,Cause of the Smell,Method start line no
+ChitChat,filedata,accountdata,populateAccounts,Magic Number,The method contains a magic number: 2,17
+ChitChat,filedata,accountdata,populateAccounts,Magic Number,The method contains a magic number: 3,17
+ChitChat,ui,createaccountWindow,createaccountWindow,Magic Number,The method contains a magic number: 500,32
+ChitChat,ui,createaccountWindow,createaccountWindow,Magic Number,The method contains a magic number: 80,32
+ChitChat,ui,createaccountWindow,createaccountWindow,Magic Number,The method contains a magic number: 1250,32
+ChitChat,ui,createaccountWindow,createaccountWindow,Magic Number,The method contains a magic number: 850,32
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Complex Conditional,The conditional expression usernameField.getText().equalsIgnoreCase("") || nickField.getText().equalsIgnoreCase("") || passwordField.getText().equalsIgnoreCase("")|| emailfield.getText().equalsIgnoreCase("") is complex.,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Long Method,The method has 172 lines of code.,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Long Statement,The length of the statement "usernameField.setBorder(BorderFactory.createCompoundBorder(new CustomeBorder()`new EmptyBorder(new Insets(10`10`10`10))));" is 122.,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Long Statement,The length of the statement "passwordField.setBorder(BorderFactory.createCompoundBorder(new CustomeBorder()`new EmptyBorder(new Insets(10`10`10`10))));" is 122.,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Long Statement,The length of the statement "submitButton.setBorder(BorderFactory.createCompoundBorder(new CustomeBorder()`new EmptyBorder(new Insets(10`10`10`10))));" is 121.,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Long Statement,The length of the statement "if (usernameField.getText().equalsIgnoreCase("") || nickField.getText().equalsIgnoreCase("") || passwordField.getText().equalsIgnoreCase("")|| emailfield.getText().equalsIgnoreCase("")) {" is 187.,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Long Statement,The length of the statement "userstructure newUser=aaccounts.createAccount(String.valueOf(passwordField.getPassword())`usernameField.getText()`nickField.getText()`emailfield.getText());" is 156.,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 20,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 500,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 500,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 40,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 15,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 15,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 15,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 20,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 1000,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 1000,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 28,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 73,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 102,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 100,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 15,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 3,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 30,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 250,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 30,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 20,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 3,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 30,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 2,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 20,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 2,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 3,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 5,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 3,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 20,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 3,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 3,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 5,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 4,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 20,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 4,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 3,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 5,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 5,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 4,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 5,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 150,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 30,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 10,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 237,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 234,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 222,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 3,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 40,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 3,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 28,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 73,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 102,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 60,47
+ChitChat,ui,createaccountWindow,framekeycreatewindow,Magic Number,The method contains a magic number: 20,47
+ChitChat,ui,createaccountWindow,actionPerformed,Complex Conditional,The conditional expression usernameField.getText().equalsIgnoreCase("") || nickField.getText().equalsIgnoreCase("") || passwordField.getText().equalsIgnoreCase("")|| emailfield.getText().equalsIgnoreCase("") is complex.,234
+ChitChat,ui,createaccountWindow,actionPerformed,Long Statement,The length of the statement "if (usernameField.getText().equalsIgnoreCase("") || nickField.getText().equalsIgnoreCase("") || passwordField.getText().equalsIgnoreCase("")|| emailfield.getText().equalsIgnoreCase("")) {" is 187.,234
+ChitChat,ui,createaccountWindow,actionPerformed,Long Statement,The length of the statement "userstructure newUser=aaccounts.createAccount(String.valueOf(passwordField.getPassword())`usernameField.getText()`nickField.getText()`emailfield.getText());" is 156.,234
+ChitChat,ui,createaccountWindow,email_validation,Long Statement,The length of the statement "if (Pattern.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"`text)) {" is 138.,275
+ChitChat,ui,FileShow,display,Magic Number,The method contains a magic number: 100,31
+ChitChat,ui,FileShow,display,Magic Number,The method contains a magic number: 100,31
+ChitChat,ui,FileShow,display,Magic Number,The method contains a magic number: 600,31
+ChitChat,ui,FileShow,display,Magic Number,The method contains a magic number: 600,31
+ChitChat,ui,FileShow,display,Magic Number,The method contains a magic number: 50,31
+ChitChat,ui,FileShow,display,Magic Number,The method contains a magic number: 50,31
+ChitChat,ui,FileShow,display,Magic Number,The method contains a magic number: 500,31
+ChitChat,ui,FileShow,display,Magic Number,The method contains a magic number: 500,31
+ChitChat,ui,FileShow,display,Magic Number,The method contains a magic number: 3,31
+ChitChat,ui,FileShow,createMenuBar,Complex Conditional,The conditional expression list.endsWith(".txt") || list.endsWith(".TXT") || list.endsWith(".docx")|| list.endsWith(".doc")|| list.endsWith(".pptx") is complex.,44
+ChitChat,ui,FileShow,createMenuBar,Long Statement,The length of the statement "if (list.endsWith(".txt") || list.endsWith(".TXT") || list.endsWith(".docx")|| list.endsWith(".doc")|| list.endsWith(".pptx")) {" is 128.,44
+ChitChat,ui,FileShow,createMenuBar,Magic Number,The method contains a magic number: 250,44
+ChitChat,ui,FileShow,createMenuBar,Magic Number,The method contains a magic number: 100,44
+ChitChat,ui,FileShow,createMenuBar,Magic Number,The method contains a magic number: 2,44
+ChitChat,ui,FileShow,createMenuBar,Magic Number,The method contains a magic number: 250,44
+ChitChat,ui,FileShow,createMenuBar,Magic Number,The method contains a magic number: 100,44
+ChitChat,ui,FileShow,createMenuBar,Magic Number,The method contains a magic number: 2,44
+ChitChat,ui,FileShow,createMenuBar,Magic Number,The method contains a magic number: 250,44
+ChitChat,ui,FileShow,createMenuBar,Magic Number,The method contains a magic number: 70,44
+ChitChat,ui,FileShow,createMenuBar,Magic Number,The method contains a magic number: 250,44
+ChitChat,ui,FileShow,createMenuBar,Magic Number,The method contains a magic number: 70,44
+ChitChat,ui,loginwindow,loginwindow,Magic Number,The method contains a magic number: 500,35
+ChitChat,ui,loginwindow,loginwindow,Magic Number,The method contains a magic number: 80,35
+ChitChat,ui,loginwindow,loginwindow,Magic Number,The method contains a magic number: 1250,35
+ChitChat,ui,loginwindow,loginwindow,Magic Number,The method contains a magic number: 850,35
+ChitChat,ui,loginwindow,loginwindow,Magic Number,The method contains a magic number: 500,35
+ChitChat,ui,loginwindow,loginwindow,Magic Number,The method contains a magic number: 500,35
+ChitChat,ui,loginwindow,framekeyloginwindow,Long Method,The method has 152 lines of code.,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Long Statement,The length of the statement "usernameField.setBorder(BorderFactory.createCompoundBorder(new CustomeBorder()`new EmptyBorder(new Insets(10`10`10`10))));" is 122.,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Long Statement,The length of the statement "passwordField.setBorder(BorderFactory.createCompoundBorder(new CustomeBorder()`new EmptyBorder(new Insets(10`10`10`10))));" is 122.,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Long Statement,The length of the statement "submitButton.setBorder(BorderFactory.createCompoundBorder(new CustomeBorder()`new EmptyBorder(new Insets(10`10`10`10))));" is 121.,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Long Statement,The length of the statement "createButton.setBorder(BorderFactory.createCompoundBorder(new CustomeBorder()`new EmptyBorder(new Insets(10`10`10`10))));" is 121.,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 20,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 15,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 20,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 1000,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 1000,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 28,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 73,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 102,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 2,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 2,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 140,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 40,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 40,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 50,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 50,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 20,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 3,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 2,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 50,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 15,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 20,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 50,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 2,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 50,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 20,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 05,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 2,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 2,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 3,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 10,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 15,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 20,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 50,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 3,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 2,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 20,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 40,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 250,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 40,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 60,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 3,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 3,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 20,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 250,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 5,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 3,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 4,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 5,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 20,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 250,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 50,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 237,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 234,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 222,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 3,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 350,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 350,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 40,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 3,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 28,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 73,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 102,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 60,50
+ChitChat,ui,loginwindow,framekeyloginwindow,Magic Number,The method contains a magic number: 20,50
+ChitChat,ui,ObjectFileCreate,createfile,Empty catch clause,The method has an empty catch block.,33
+ChitChat,ui,personalchatroomui,personalchatroomui,Magic Number,The method contains a magic number: 20,71
+ChitChat,ui,personalchatroomui,personalchatroomui,Magic Number,The method contains a magic number: 1035,71
+ChitChat,ui,personalchatroomui,personalchatroomui,Magic Number,The method contains a magic number: 1050,71
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Complex Conditional,The conditional expression msg.contains("&&&&&&&&") is complex.,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Complex Conditional,The conditional expression !msg.contains("%c@") && !msg.contains("`_(:);)(") && !msg.contains("&&&&&&&&")&& !msg.endsWith("^^^^^^^^")&& !msg.endsWith("~%~~") is complex.,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Complex Method,Cyclomatic complexity of the method is 37,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Long Method,The method has 397 lines of code.,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Long Statement,The length of the statement "logout_button.setBorder(BorderFactory.createCompoundBorder(new CustomeBorder1()`new EmptyBorder(new Insets(10`10`10`10))));" is 123.,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Long Statement,The length of the statement "shareditemmenu_button.setBorder(BorderFactory.createCompoundBorder(new CustomeBorder1()`new EmptyBorder(new Insets(10`10`10`10))));" is 131.,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Long Statement,The length of the statement "gamingzonebutton.setBorder(BorderFactory.createCompoundBorder(new CustomeBorder1()`new EmptyBorder(new Insets(10`10`10`10))));" is 126.,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Long Statement,The length of the statement "dictionary_Button.setBorder(BorderFactory.createCompoundBorder(new CustomeBorder1()`new EmptyBorder(new Insets(10`10`10`10))));" is 127.,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Long Statement,The length of the statement "picturebutton.setBorder(BorderFactory.createCompoundBorder(new CustomeBorder()`new EmptyBorder(new Insets(10`10`10`10))));" is 122.,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Long Statement,The length of the statement "history_chats.WriteHistory("Chat of" + personwhosent_name + name+ ".txt"`"(" + personwhosent_name + ")------->"+ actualmsg);" is 124.,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Long Statement,The length of the statement "if (!msg.contains("%c@") && !msg.contains("`_(:);)(") && !msg.contains("&&&&&&&&")&& !msg.endsWith("^^^^^^^^")&& !msg.endsWith("~%~~")) {" is 137.,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Long Statement,The length of the statement "JOptionPane.showMessageDialog(null`"Sorry! some combinations of signs in this msg are not allowed to be paased for functional reason");" is 135.,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 30,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 28,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 73,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 102,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 30,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 28,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 73,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 102,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 30,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 28,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 73,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 102,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 150,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 400,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 30,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 28,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 73,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 102,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 30,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 28,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 73,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 102,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 20,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 500,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 500,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 300,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 30,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 50,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 50,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 28,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 73,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 102,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 75,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 75,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 28,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 73,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 102,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 65,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 65,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 28,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 73,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 102,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 237,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 234,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 222,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 300,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 20,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 5,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 2,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 3,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 4,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 5,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 5,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 6,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 7,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 20,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 28,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 73,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 102,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 800,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 650,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 20,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 2,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 30,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 6,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 10,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 3,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 1000,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 1000,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 30,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 28,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 73,138
+ChitChat,ui,personalchatroomui,framekeypersonalchatroom,Magic Number,The method contains a magic number: 102,138
+ChitChat,ui,personalchatroomui,run,Complex Conditional,The conditional expression msg.contains("&&&&&&&&") is complex.,351
+ChitChat,ui,personalchatroomui,run,Complex Method,Cyclomatic complexity of the method is 35,351
+ChitChat,ui,personalchatroomui,run,Long Method,The method has 206 lines of code.,351
+ChitChat,ui,personalchatroomui,run,Long Statement,The length of the statement "history_chats.WriteHistory("Chat of" + personwhosent_name + name+ ".txt"`"(" + personwhosent_name + ")------->"+ actualmsg);" is 124.,351
+ChitChat,ui,personalchatroomui,run,Magic Number,The method contains a magic number: 30,351
+ChitChat,ui,personalchatroomui,run,Magic Number,The method contains a magic number: 28,351
+ChitChat,ui,personalchatroomui,run,Magic Number,The method contains a magic number: 73,351
+ChitChat,ui,personalchatroomui,run,Magic Number,The method contains a magic number: 102,351
+ChitChat,ui,personalchatroomui,actionPerformed,Complex Method,Cyclomatic complexity of the method is 8,414
+ChitChat,ui,personalchatroomui,actionPerformed,Complex Conditional,The conditional expression !msg.contains("%c@") && !msg.contains("`_(:);)(") && !msg.contains("&&&&&&&&")&& !msg.endsWith("^^^^^^^^")&& !msg.endsWith("~%~~") is complex.,634
+ChitChat,ui,personalchatroomui,actionPerformed,Long Statement,The length of the statement "if (!msg.contains("%c@") && !msg.contains("`_(:);)(") && !msg.contains("&&&&&&&&")&& !msg.endsWith("^^^^^^^^")&& !msg.endsWith("~%~~")) {" is 137.,634
+ChitChat,ui,personalchatroomui,actionPerformed,Long Statement,The length of the statement "JOptionPane.showMessageDialog(null`"Sorry! some combinations of signs in this msg are not allowed to be paased for functional reason");" is 135.,634
+ChitChat,ui,personalchatroomui,dpandnamelabel,Long Statement,The length of the statement "clintnamelabel.setBorder(BorderFactory.createCompoundBorder(new CustomeBorder()`new EmptyBorder(new Insets(10`10`10`10))));" is 123.,748
+ChitChat,ui,personalchatroomui,dpandnamelabel,Long Statement,The length of the statement "friendship_statusbutton.setBorder(BorderFactory.createCompoundBorder(new CustomeBorder()`new EmptyBorder(new Insets(10`10`10`10))));" is 132.,748
+ChitChat,ui,personalchatroomui,dpandnamelabel,Magic Number,The method contains a magic number: 30,748
+ChitChat,ui,personalchatroomui,dpandnamelabel,Magic Number,The method contains a magic number: 10,748
+ChitChat,ui,personalchatroomui,dpandnamelabel,Magic Number,The method contains a magic number: 10,748
+ChitChat,ui,personalchatroomui,dpandnamelabel,Magic Number,The method contains a magic number: 10,748
+ChitChat,ui,personalchatroomui,dpandnamelabel,Magic Number,The method contains a magic number: 10,748
+ChitChat,ui,personalchatroomui,dpandnamelabel,Magic Number,The method contains a magic number: 50,748
+ChitChat,ui,personalchatroomui,dpandnamelabel,Magic Number,The method contains a magic number: 50,748
+ChitChat,ui,personalchatroomui,dpandnamelabel,Magic Number,The method contains a magic number: 28,748
+ChitChat,ui,personalchatroomui,dpandnamelabel,Magic Number,The method contains a magic number: 73,748
+ChitChat,ui,personalchatroomui,dpandnamelabel,Magic Number,The method contains a magic number: 102,748
+ChitChat,ui,personalchatroomui,dpandnamelabel,Magic Number,The method contains a magic number: 10,748
+ChitChat,ui,personalchatroomui,dpandnamelabel,Magic Number,The method contains a magic number: 10,748
+ChitChat,ui,personalchatroomui,dpandnamelabel,Magic Number,The method contains a magic number: 10,748
+ChitChat,ui,personalchatroomui,dpandnamelabel,Magic Number,The method contains a magic number: 10,748
+ChitChat,ui,personalchatroomui,option,Magic Number,The method contains a magic number: 3,805
+ChitChat,ui,personalchatroomui,option,Magic Number,The method contains a magic number: 2,805
+ChitChat,ui,personalchatroomui,option,Magic Number,The method contains a magic number: 20,805
+ChitChat,ui,personalchatroomui,option,Magic Number,The method contains a magic number: 10,805
+ChitChat,ui,personalchatroomui,option,Magic Number,The method contains a magic number: 3,805
+ChitChat,ui,personalchatroomui,option,Magic Number,The method contains a magic number: 3,805
+ChitChat,ui,personalchatroomui,option,Magic Number,The method contains a magic number: 20,805
+ChitChat,ui,personalchatroomui,picture_selection,Long Statement,The length of the statement "int decission=JOptionPane.showConfirmDialog(frame`"Do you want to send the file " + selected_picture_tosend.getName() + " ?");" is 126.,870
+ChitChat,ui,personalchatroomui,file_selection,Long Statement,The length of the statement "int decission=JOptionPane.showConfirmDialog(frame`"Do you want to send the file " + selected_file_tosend.getName() + " ?");" is 123.,897
+ChitChat,ui,personalchatroomui,hashCode,Magic Number,The method contains a magic number: 3,955
+ChitChat,ui,personalchatroomui,equals,Complex Method,Cyclomatic complexity of the method is 12,961
+ChitChat,User,userstructure,userstructure,Magic Number,The method contains a magic number: 2,23
+ChitChat,User,userstructure,userstructure,Magic Number,The method contains a magic number: 3,23
+ChitChat,User,userstructure,userstructure,Magic Number,The method contains a magic number: 4,23
+ChitChat,User,userstructure,setAll,Magic Number,The method contains a magic number: 2,75
+ChitChat,User,userstructure,setAll,Magic Number,The method contains a magic number: 3,75
+ChitChat,User,userstructure,setAll,Magic Number,The method contains a magic number: 4,75
+ChitChat,dictionary,DeleteListedWord,DeleteListedWord,Long Statement,The length of the statement "JOptionPane.showMessageDialog(DeleteListedWord.this`"Word not found! Please try again."`"Delete Word"`JOptionPane.INFORMATION_MESSAGE);" is 135.,21
+ChitChat,dictionary,DeleteListedWord,DeleteListedWord,Long Statement,The length of the statement "JOptionPane.showMessageDialog(DeleteListedWord.this`"Word deleted successfully!"`"Delete Word"`JOptionPane.INFORMATION_MESSAGE);" is 128.,21
+ChitChat,dictionary,DeleteListedWord,DeleteListedWord,Long Statement,The length of the statement "JOptionPane.showMessageDialog(DeleteListedWord.this`"Please Enter word from dictionary!"`"Add Word"`JOptionPane.INFORMATION_MESSAGE);" is 133.,21
+ChitChat,dictionary,DeleteListedWord,DeleteListedWord,Magic Number,The method contains a magic number: 20,21
+ChitChat,dictionary,DeleteListedWord,actionPerformed,Long Statement,The length of the statement "JOptionPane.showMessageDialog(DeleteListedWord.this`"Word not found! Please try again."`"Delete Word"`JOptionPane.INFORMATION_MESSAGE);" is 135.,29
+ChitChat,dictionary,DeleteListedWord,actionPerformed,Long Statement,The length of the statement "JOptionPane.showMessageDialog(DeleteListedWord.this`"Word deleted successfully!"`"Delete Word"`JOptionPane.INFORMATION_MESSAGE);" is 128.,29
+ChitChat,dictionary,DeleteListedWord,actionPerformed,Long Statement,The length of the statement "JOptionPane.showMessageDialog(DeleteListedWord.this`"Please Enter word from dictionary!"`"Add Word"`JOptionPane.INFORMATION_MESSAGE);" is 133.,29
+ChitChat,dictionary,DictionaryMainFrame,DictionaryMainFrame,Long Statement,The length of the statement "JLabel label=new JLabel("<html> <i><u><h1 color=red> Instructions :</h1></u></i><br/> 1) To find a meaning of a word` click 'Search Meaning' icon <br/>" + " from 'Dictionary' menu or from the given toolber.<br/>" + " 2) To add a word` click 'Add Word' icon & go to option 3.<br/>"+ " 3) By clicking the 'Add Button' you have to click the 'Save to Disc' icon <br/>"+ " from 'Storage' menu or from the given toolber.<br/> "+ " 4) To delete a word` click 'Delete Word' icon .<br/>"+ " 5) You can see the full list of word by clicking the 'Word List' icon.<br/>");" is 560.,14
+ChitChat,dictionary,DictionaryMainFrame,DictionaryMainFrame,Magic Number,The method contains a magic number: 300,14
+ChitChat,dictionary,DictionaryMainFrame,DictionaryMainFrame,Magic Number,The method contains a magic number: 100,14
+ChitChat,dictionary,DictionaryMainFrame,DictionaryMainFrame,Magic Number,The method contains a magic number: 500,14
+ChitChat,dictionary,DictionaryMainFrame,DictionaryMainFrame,Magic Number,The method contains a magic number: 350,14
+ChitChat,dictionary,DictionaryMainFrame,centerToParent,Magic Number,The method contains a magic number: 2,126
+ChitChat,dictionary,DictionaryMainFrame,centerToParent,Magic Number,The method contains a magic number: 2,126
+ChitChat,dictionary,DictionaryMainFrame,exit,Long Statement,The length of the statement "int optn=JOptionPane.showConfirmDialog(DictionaryMainFrame.this`"Do you want to write all pending changes to disc and then exit?"`"Save"`JOptionPane.YES_NO_CANCEL_OPTION`JOptionPane.QUESTION_MESSAGE);" is 200.,162
+ChitChat,dictionary,DictionaryMainFrame,optionToolBar,Magic Number,The method contains a magic number: 40,178
+ChitChat,dictionary,DictionaryMainFrame,optionToolBar,Magic Number,The method contains a magic number: 40,178
+ChitChat,dictionary,DictionaryMainFrame,optionToolBar,Magic Number,The method contains a magic number: 40,178
+ChitChat,dictionary,DictionaryMainFrame,optionToolBar,Magic Number,The method contains a magic number: 40,178
+ChitChat,dictionary,DictionaryMainFrame,optionToolBar,Magic Number,The method contains a magic number: 40,178
+ChitChat,dictionary,DictionaryMainFrame,optionToolBar,Magic Number,The method contains a magic number: 40,178
+ChitChat,dictionary,DictionaryMainFrame,optionToolBar,Magic Number,The method contains a magic number: 40,178
+ChitChat,dictionary,DictionaryMainFrame,optionToolBar,Magic Number,The method contains a magic number: 40,178
+ChitChat,dictionary,DictionaryMainFrame,addStorageMenu,Long Statement,The length of the statement "JOptionPane.showMessageDialog(DictionaryMainFrame.this`"Saved dictionary successfully!"`"Save Dictonary"`JOptionPane.INFORMATION_MESSAGE);" is 138.,257
+ChitChat,dictionary,DictionaryMainFrame,addStorageMenu,Long Statement,The length of the statement "JOptionPane.showMessageDialog(DictionaryMainFrame.this`"Loaded dictionary successfully!"`"Load Dictionary"`JOptionPane.INFORMATION_MESSAGE);" is 140.,257
+ChitChat,dictionary,DictionaryMainFrame,actionPerformed,Long Statement,The length of the statement "JOptionPane.showMessageDialog(DictionaryMainFrame.this`"Saved dictionary successfully!"`"Save Dictonary"`JOptionPane.INFORMATION_MESSAGE);" is 138.,266
+ChitChat,dictionary,DictionaryMainFrame,actionPerformed,Long Statement,The length of the statement "JOptionPane.showMessageDialog(DictionaryMainFrame.this`"Loaded dictionary successfully!"`"Load Dictionary"`JOptionPane.INFORMATION_MESSAGE);" is 140.,284
+ChitChat,dictionary,DictionaryMainFrame,addContactMenu,Long Statement,The length of the statement "JOptionPane.showMessageDialog(DictionaryMainFrame.this`"+88 01930-878889"`"Cell Phone Number"`JOptionPane.INFORMATION_MESSAGE);" is 127.,299
+ChitChat,dictionary,DictionaryMainFrame,addContactMenu,Long Statement,The length of the statement "JOptionPane.showMessageDialog(DictionaryMainFrame.this`"+88 01930-878889"`"WhatsApp Number"`JOptionPane.INFORMATION_MESSAGE);" is 125.,299
+ChitChat,dictionary,DictionaryMainFrame,addContactMenu,Long Statement,The length of the statement "JOptionPane.showMessageDialog(DictionaryMainFrame.this`"ranaswe2@gmail.com"`"E-mail Address"`JOptionPane.INFORMATION_MESSAGE);" is 126.,299
+ChitChat,dictionary,DictionaryMainFrame,actionPerformed,Long Statement,The length of the statement "JOptionPane.showMessageDialog(DictionaryMainFrame.this`"+88 01930-878889"`"Cell Phone Number"`JOptionPane.INFORMATION_MESSAGE);" is 127.,308
+ChitChat,dictionary,DictionaryMainFrame,actionPerformed,Long Statement,The length of the statement "JOptionPane.showMessageDialog(DictionaryMainFrame.this`"+88 01930-878889"`"WhatsApp Number"`JOptionPane.INFORMATION_MESSAGE);" is 125.,322
+ChitChat,dictionary,DictionaryMainFrame,actionPerformed,Long Statement,The length of the statement "JOptionPane.showMessageDialog(DictionaryMainFrame.this`"ranaswe2@gmail.com"`"E-mail Address"`JOptionPane.INFORMATION_MESSAGE);" is 126.,336
+ChitChat,dictionary,DictionaryMainFrame,addHelpMenu,Long Statement,The length of the statement "JOptionPane.showMessageDialog(DictionaryMainFrame.this`"<html>If you face any problem`<br/> please` contact with the team Squadron.<br/> "`"Information"`JOptionPane.INFORMATION_MESSAGE);" is 186.,347
+ChitChat,dictionary,DictionaryMainFrame,actionPerformed,Long Statement,The length of the statement "JOptionPane.showMessageDialog(DictionaryMainFrame.this`"<html>If you face any problem`<br/> please` contact with the team Squadron.<br/> "`"Information"`JOptionPane.INFORMATION_MESSAGE);" is 186.,356
+ChitChat,dictionary,ImplementWord,ImplementWord,Long Statement,The length of the statement "JOptionPane.showMessageDialog(ImplementWord.this`"Please enter Word and meaning!"`"Add Word"`JOptionPane.INFORMATION_MESSAGE);" is 126.,31
+ChitChat,dictionary,ImplementWord,ImplementWord,Long Statement,The length of the statement "JScrollPane sp=new JScrollPane(taMeaning`JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED`JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);" is 126.,31
+ChitChat,dictionary,ImplementWord,ImplementWord,Magic Number,The method contains a magic number: 5,31
+ChitChat,dictionary,ImplementWord,ImplementWord,Magic Number,The method contains a magic number: 5,31
+ChitChat,dictionary,ImplementWord,ImplementWord,Magic Number,The method contains a magic number: 10,31
+ChitChat,dictionary,ImplementWord,ImplementWord,Magic Number,The method contains a magic number: 5,31
+ChitChat,dictionary,ImplementWord,ImplementWord,Magic Number,The method contains a magic number: 25,31
+ChitChat,dictionary,ImplementWord,ImplementWord,Magic Number,The method contains a magic number: 2,31
+ChitChat,dictionary,ImplementWord,ImplementWord,Magic Number,The method contains a magic number: 2,31
+ChitChat,dictionary,ImplementWord,ImplementWord,Magic Number,The method contains a magic number: 3,31
+ChitChat,dictionary,ImplementWord,ImplementWord,Magic Number,The method contains a magic number: 30,31
+ChitChat,dictionary,ImplementWord,ImplementWord,Magic Number,The method contains a magic number: 3,31
+ChitChat,dictionary,ImplementWord,actionPerformed,Long Statement,The length of the statement "JOptionPane.showMessageDialog(ImplementWord.this`"Please enter Word and meaning!"`"Add Word"`JOptionPane.INFORMATION_MESSAGE);" is 126.,65
+ChitChat,dictionary,ListOfWord,ListOfWord,Long Statement,The length of the statement "JScrollPane s=new JScrollPane(table`JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED`JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);" is 121.,13
+ChitChat,dictionary,ListOfWord,ListOfWord,Magic Number,The method contains a magic number: 500,13
+ChitChat,dictionary,ListOfWord,ListOfWord,Magic Number,The method contains a magic number: 400,13
+ChitChat,dictionary,WordSearch,WordSearch,Long Statement,The length of the statement "JOptionPane.showMessageDialog(WordSearch.this`"Please Enter Word from Dictionary"`"Search Message"`JOptionPane.INFORMATION_MESSAGE);" is 132.,16
+ChitChat,dictionary,WordSearch,WordSearch,Long Statement,The length of the statement "JScrollPane p=new JScrollPane(meaning`JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED`JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);" is 123.,16
+ChitChat,dictionary,WordSearch,WordSearch,Magic Number,The method contains a magic number: 5,16
+ChitChat,dictionary,WordSearch,WordSearch,Magic Number,The method contains a magic number: 5,16
+ChitChat,dictionary,WordSearch,WordSearch,Magic Number,The method contains a magic number: 10,16
+ChitChat,dictionary,WordSearch,WordSearch,Magic Number,The method contains a magic number: 5,16
+ChitChat,dictionary,WordSearch,WordSearch,Magic Number,The method contains a magic number: 20,16
+ChitChat,dictionary,WordSearch,WordSearch,Magic Number,The method contains a magic number: 2,16
+ChitChat,dictionary,WordSearch,WordSearch,Magic Number,The method contains a magic number: 2,16
+ChitChat,dictionary,WordSearch,WordSearch,Magic Number,The method contains a magic number: 3,16
+ChitChat,dictionary,WordSearch,WordSearch,Magic Number,The method contains a magic number: 30,16
+ChitChat,dictionary,WordSearch,WordSearch,Magic Number,The method contains a magic number: 500,16
+ChitChat,dictionary,WordSearch,WordSearch,Magic Number,The method contains a magic number: 200,16
+ChitChat,dictionary,WordSearch,actionPerformed,Long Statement,The length of the statement "JOptionPane.showMessageDialog(WordSearch.this`"Please Enter Word from Dictionary"`"Search Message"`JOptionPane.INFORMATION_MESSAGE);" is 132.,29
+ChitChat,server,clinthandaler2,clinthandaler2,Long Parameter List,The method has 5 parameters. ,18
+ChitChat,server,clinthandaler2,closingresourece,Empty catch clause,The method has an empty catch block.,94
+ChitChat,server,clinthandaler2,allfunction,Complex Conditional,The conditional expression msg.endsWith("&&&&&&&&") is complex.,105
+ChitChat,server,clinthandaler2,msg_to_actualmsg,Complex Conditional,The conditional expression msg.endsWith("&&&&&&&&") is complex.,157
+ChitChat,server,clinthandaler2,toall,Empty catch clause,The method has an empty catch block.,200
+ChitChat,server,clinthandaler2,alreadyconnectedpeoplelist,Empty catch clause,The method has an empty catch block.,215
+ChitChat,server,clinthandaler2,sendtoclint,Empty catch clause,The method has an empty catch block.,231
+ChitChat,server,clinthandaler2,send_friendrequest,Empty catch clause,The method has an empty catch block.,274
+ChitChat,server,clinthandaler2,friendrequest_ans,Empty catch clause,The method has an empty catch block.,288
+ChitChat,server,serversocket,serversocket,Empty catch clause,The method has an empty catch block.,24
+ChitChat,server,serversocket,serversocket,Magic Number,The method contains a magic number: 666,24
+ChitChat,tictactoy,TictacMainFrame,TictacMainFrame,Long Statement,The length of the statement "JLabel label=new JLabel("<html><h1 color=red> Instructions :</h1><br/>" + " 1. X will play first and then O's turn.<br/>" + " 2. After getting XXX or OOO from any straight line`the game will over.<br/>"+ " 3. X will win the game if X get XXX first else O win.<br/>"+ " 4. When anyone can't get XXX or OOO but all blocks are played<br/>"+ " then the game will Draw and over.<br/><br/><br/>");" is 391.,19
+ChitChat,tictactoy,TictacMainFrame,TictacMainFrame,Magic Number,The method contains a magic number: 500,19
+ChitChat,tictactoy,TictacMainFrame,TictacMainFrame,Magic Number,The method contains a magic number: 100,19
+ChitChat,tictactoy,TictacMainFrame,TictacMainFrame,Magic Number,The method contains a magic number: 500,19
+ChitChat,tictactoy,TictacMainFrame,TictacMainFrame,Magic Number,The method contains a magic number: 300,19
+ChitChat,tictactoy,TicTacToy,TicTacToy,Magic Number,The method contains a magic number: 9,31
+ChitChat,tictactoy,TicTacToy,checkWinner,Complex Method,Cyclomatic complexity of the method is 15,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 8,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 2,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 3,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 4,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 5,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 2,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 6,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 7,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 8,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 3,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 3,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 6,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 4,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 2,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 5,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 8,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 5,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 4,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 8,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 6,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 2,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 4,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 6,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 7,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 4,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 7,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 9,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Magic Number,The method contains a magic number: 8,55
+ChitChat,tictactoy,TicTacToy,checkWinner,Missing default,The following switch statement is missing a default case: switch (i) {,55
+ChitChat,tictactoy,TicTacToy,emptyBoard,Magic Number,The method contains a magic number: 20,104
+ChitChat,tictactoy,TicTacToy,emptyBoard,Magic Number,The method contains a magic number: 130,104
+ChitChat,tictactoy,TicTacToy,emptyBoard,Magic Number,The method contains a magic number: 400,104
+ChitChat,tictactoy,TicTacToy,emptyBoard,Magic Number,The method contains a magic number: 400,104
+ChitChat,tictactoy,TicTacToy,emptyBoard,Magic Number,The method contains a magic number: 100,104
+ChitChat,tictactoy,TicTacToy,emptyBoard,Magic Number,The method contains a magic number: 9,104
+ChitChat,tictactoy,TicTacToy,emptyBoard,Magic Number,The method contains a magic number: 3,104
+ChitChat,tictactoy,TicTacToy,emptyBoard,Magic Number,The method contains a magic number: 100,104
+ChitChat,tictactoy,TicTacToy,emptyBoard,Magic Number,The method contains a magic number: 3,104
+ChitChat,tictactoy,TicTacToy,emptyBoard,Magic Number,The method contains a magic number: 100,104
+ChitChat,tictactoy,TicTacToy,emptyBoard,Magic Number,The method contains a magic number: 100,104
+ChitChat,tictactoy,TicTacToy,emptyBoard,Magic Number,The method contains a magic number: 100,104
+ChitChat,tictactoy,TicTacToy,emptyBoard,Magic Number,The method contains a magic number: 500,104
+ChitChat,tictactoy,TicTacToy,emptyBoard,Magic Number,The method contains a magic number: 100,104
+ChitChat,tictactoy,TicTacToy,emptyBoard,Magic Number,The method contains a magic number: 300,104
+ChitChat,tictactoy,TicTacToy,emptyBoard,Magic Number,The method contains a magic number: 450,104
+ChitChat,tictactoy,TicTacToy,paintComponent,Magic Number,The method contains a magic number: 100,154
+ChitChat,tictactoy,TicTacToy,paintComponent,Magic Number,The method contains a magic number: 3,154
+ChitChat,tictactoy,TicTacToy,paintComponent,Magic Number,The method contains a magic number: 300,154
+ChitChat,tictactoy,TicTacToy,paintComponent,Magic Number,The method contains a magic number: 3,154
+ChitChat,tictactoy,TicTacToy,paintComponent,Magic Number,The method contains a magic number: 300,154
+ChitChat,tictactoy,TicTacToy,paintComponent,Magic Number,The method contains a magic number: 100,154
